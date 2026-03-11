@@ -34,8 +34,14 @@ export default function Login() {
     try {
       setError('');
       setLoading(true);
-      await loginWithGoogle();
-      navigate('/dashboard');
+      const user = await loginWithGoogle();
+      
+      // Check if it's a new user
+      if (user.metadata.creationTime === user.metadata.lastSignInTime) {
+        navigate('/quiz');
+      } else {
+        navigate('/dashboard');
+      }
     } catch (error: any) {
       setError(getFriendlyErrorMessage(error.code));
     } finally {
@@ -50,10 +56,11 @@ export default function Login() {
       setLoading(true);
       if (activeTab === 'register') {
         await registerWithEmail(email, password);
+        navigate('/quiz');
       } else {
         await loginWithEmail(email, password);
+        navigate('/dashboard');
       }
-      navigate('/dashboard');
     } catch (error: any) {
       setError(getFriendlyErrorMessage(error.code));
     } finally {

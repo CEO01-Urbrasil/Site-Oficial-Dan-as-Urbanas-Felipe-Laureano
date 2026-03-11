@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Store from './pages/Store';
 import Blog from './pages/Blog';
+import Quiz from './pages/Quiz';
 import FelipeLaureano from './pages/FelipeLaureano';
 
 export default function App() {
@@ -36,6 +37,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/felipe-laureano" element={<FelipeLaureano />} />
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
+        <Route path="/quiz" element={<Quiz />} />
         
         {/* Authenticated Routes */}
         <Route element={user ? <Layout user={user} /> : <Navigate to="/login" />}>

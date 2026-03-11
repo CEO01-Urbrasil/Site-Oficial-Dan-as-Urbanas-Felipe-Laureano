@@ -34,7 +34,7 @@ export default function Home() {
       if (g) g.style.transform = `translate(-50%,calc(-50% + ${s * 0.3}px))`;
       
       const h = document.getElementById('hero-bg');
-      if (h) h.style.transform = `translateY(${s * 0.4}px)`;
+      if (h) h.style.transform = `translateY(${s * 0.15}px) scale(${1 + s * 0.0002})`;
 
       const b = document.getElementById('hero-badge');
       if (b) b.style.transform = `translateY(${s * -0.2}px)`;
@@ -185,6 +185,9 @@ export default function Home() {
                 CONHECER O PROJETO
               </a>
             </div>
+            <a href="#sobre" className="inline-flex items-center gap-2 text-white/70 hover:text-[#F5C400] transition-colors mt-6 font-bold uppercase tracking-widest text-sm">
+              Saiba Mais <ChevronDown size={16} />
+            </a>
           </div>
         </div>
 
@@ -429,6 +432,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Próximos Eventos */}
+      <section id="eventos" className="rev py-32 px-6 bg-[#0A0A0A]">
+        <div className="container max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="st font-['Anton'] text-6xl md:text-8xl uppercase mb-4">PRÓXIMOS <span className="text-[#F5C400]">EVENTOS</span></h2>
+            <p className="text-xl text-gray-500 max-w-2xl mx-auto">Não perca nossas próximas experiências e workshops.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'Workshop de Breaking',
+                date: '25 de Março',
+                location: 'Sede URBrasil, Petrópolis',
+                link: 'https://wa.me/5524992645678?text=Quero%20saber%20mais%20sobre%20o%20Workshop%20de%20Breaking'
+              },
+              {
+                title: 'Aulão de Hip Hop',
+                date: '10 de Abril',
+                location: 'Praça da Liberdade, Petrópolis',
+                link: 'https://wa.me/5524992645678?text=Quero%20saber%20mais%20sobre%20o%20Aulão%20de%20Hip%20Hop'
+              },
+              {
+                title: 'URBrasil Battle',
+                date: '05 de Maio',
+                location: 'Centro Cultural, Petrópolis',
+                link: 'https://wa.me/5524992645678?text=Quero%20saber%20mais%20sobre%20a%20URBrasil%20Battle'
+              }
+            ].map((evento, i) => (
+              <div key={i} className="bg-[#111] p-8 rounded-3xl border border-white/5 hover:border-[#F5C400] transition-all group">
+                <div className="text-[#F5C400] font-bold uppercase tracking-widest text-xs mb-2">{evento.date}</div>
+                <h3 className="font-['Anton'] text-2xl uppercase tracking-wider mb-2">{evento.title}</h3>
+                <p className="text-gray-500 text-sm mb-6">{evento.location}</p>
+                <a href={evento.link} target="_blank" rel="noreferrer" className="inline-block border border-white/20 px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-[#F5C400] hover:text-black transition-all">
+                  Saiba Mais
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Preços */}
       <section id="precos" className="rev py-32 bg-[#0A0A0A] px-6 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#F5C400] to-transparent opacity-20"></div>
@@ -436,132 +481,71 @@ export default function Home() {
         <div className="container max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="st font-['Anton'] text-6xl md:text-8xl uppercase mb-4">ESCOLHA SEU <span className="text-[#F5C400]">PLANO</span></h2>
-            <p className="text-xl text-gray-500 max-w-2xl mx-auto mb-8">Invista no seu talento e faça parte do movimento.</p>
-            
-            {/* Countdown Timer */}
-            <div className="inline-flex items-center gap-4 bg-[#111] border border-[#F5C400]/30 px-6 py-3 rounded-2xl">
-              <Clock className="text-[#F5C400]" size={20} />
-              <span className="text-sm font-bold uppercase tracking-widest text-gray-400">Oferta expira em:</span>
-              <div className="flex gap-2 font-['Anton'] text-2xl text-[#F5C400]">
-                <span>{formatNum(timeLeft.h)}h</span>
-                <span>{formatNum(timeLeft.m)}m</span>
-                <span>{formatNum(timeLeft.s)}s</span>
-              </div>
-            </div>
+            <p className="text-xl text-gray-500 max-w-2xl mx-auto mb-8">Invista em você e faça parte do movimento.</p>
+            <p className="text-sm font-bold uppercase tracking-widest text-[#F5C400]">Junte-se a +500 alunos que já otimizaram seus resultados</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Plano Starter */}
-            <div className="p-card bg-[#111] p-10 rounded-3xl border border-white/5 flex flex-col relative group">
-              <div className="mb-8">
-                <h3 className="font-['Anton'] text-3xl uppercase tracking-wider mb-2">STARTER</h3>
-                <p className="text-gray-500 text-sm font-bold uppercase tracking-widest">1x por semana</p>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* 1x na Semana */}
+            <div className="bg-[#111] p-10 rounded-3xl border border-white/5 flex flex-col">
+              <h3 className="font-['Anton'] text-3xl uppercase tracking-wider mb-6">1x NA SEMANA</h3>
+              <div className="space-y-6">
+                <div className="flex justify-between items-center border-b border-white/5 pb-4">
+                  <span className="text-gray-400">Mensal (Ancoragem)</span>
+                  <span className="text-2xl font-bold">R$ 130,00</span>
+                </div>
+                <div className="flex justify-between items-center border-b border-white/5 pb-4">
+                  <div>
+                    <div className="font-bold">6 Meses (15% OFF)</div>
+                    <div className="text-xs text-green-500 uppercase">Economize R$ 117,00</div>
+                  </div>
+                  <span className="text-2xl font-bold text-[#F5C400]">R$ 663,00</span>
+                </div>
+                <div className="flex justify-between items-center pb-4">
+                  <div>
+                    <div className="font-bold">1 Ano (30% OFF)</div>
+                    <div className="text-xs text-green-500 uppercase">Economize R$ 468,00</div>
+                    <div className="text-xs text-gray-500">Apenas R$ 91,00/mês</div>
+                  </div>
+                  <span className="text-2xl font-bold text-[#F5C400]">R$ 1.092,00</span>
+                </div>
               </div>
-              <div className="mb-8">
-                <div className="text-5xl font-['Anton'] text-[#F5C400]">R$ 130<span className="text-lg text-gray-500">/mês</span></div>
-                <p className="text-xs text-gray-600 mt-2 font-bold uppercase">Pix ou Boleto</p>
-                <p className="text-xs text-gray-600 mt-1">Cartão: R$ 143/mês</p>
-              </div>
-              <ul className="space-y-4 mb-10 flex-1">
-                <li className="flex items-center gap-3 text-gray-400 text-sm font-medium">
-                  <CheckCircle2 size={18} className="text-[#F5C400]" /> Acesso a 1 modalidade
-                </li>
-                <li className="flex items-center gap-3 text-gray-400 text-sm font-medium">
-                  <CheckCircle2 size={18} className="text-[#F5C400]" /> Material de apoio digital
-                </li>
-                <li className="flex items-center gap-3 text-gray-400 text-sm font-medium">
-                  <CheckCircle2 size={18} className="text-[#F5C400]" /> Certificado de participação
-                </li>
-              </ul>
-              <a href="https://wa.me/5524992645678?text=Quero%20me%20inscrever%20no%20Plano%201x%20por%20semana" className="w-full border border-white/20 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center">
-                Inscrever via WhatsApp
+              <a href="https://wa.me/5524992645678?text=Quero%20me%20inscrever%20no%20Plano%201x%20por%20semana" className="mt-10 w-full border border-white/20 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center">
+                Invista em você
               </a>
             </div>
 
-            {/* Plano Evolução - DESTACADO */}
-            <div className="p-card featured bg-[#111] p-10 rounded-3xl border-2 border-[#F5C400] flex flex-col relative transform md:-translate-y-4 shadow-[0_0_50px_rgba(245,196,0,0.1)]">
-              <div className="p-badge absolute -top-5 left-1/2 -translate-x-1/2 bg-[#F5C400] text-black font-['Anton'] px-6 py-2 rounded-full text-sm tracking-widest">
-                MAIS ESCOLHIDO
+            {/* 2x na Semana - DESTACADO */}
+            <div className="bg-[#111] p-10 rounded-3xl border-2 border-[#F5C400] flex flex-col relative shadow-[0_0_50px_rgba(245,196,0,0.1)]">
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#F5C400] text-black font-['Anton'] px-6 py-2 rounded-full text-sm tracking-widest uppercase">
+                Mais Escolhido
               </div>
-              <div className="mb-8">
-                <h3 className="font-['Anton'] text-3xl uppercase tracking-wider mb-2">EVOLUÇÃO</h3>
-                <p className="text-gray-500 text-sm font-bold uppercase tracking-widest">2x por semana</p>
+              <h3 className="font-['Anton'] text-3xl uppercase tracking-wider mb-6">2x NA SEMANA</h3>
+              <div className="space-y-6 flex-1">
+                <div className="flex justify-between items-center border-b border-white/5 pb-4">
+                  <span className="text-gray-400">Mensal (Ancoragem)</span>
+                  <span className="text-2xl font-bold">R$ 160,00</span>
+                </div>
+                <div className="flex justify-between items-center border-b border-white/5 pb-4">
+                  <div>
+                    <div className="font-bold">6 Meses (15% OFF)</div>
+                    <div className="text-xs text-green-500 uppercase">Economize R$ 144,00</div>
+                  </div>
+                  <span className="text-2xl font-bold text-[#F5C400]">R$ 816,00</span>
+                </div>
+                <div className="flex justify-between items-center pb-4">
+                  <div>
+                    <div className="font-bold">1 Ano (30% OFF)</div>
+                    <div className="text-xs text-green-500 uppercase">Economize R$ 576,00</div>
+                    <div className="text-xs text-gray-500">Apenas R$ 112,00/mês</div>
+                  </div>
+                  <span className="text-2xl font-bold text-[#F5C400]">R$ 1.344,00</span>
+                </div>
               </div>
-              <div className="mb-8">
-                <div className="text-5xl font-['Anton'] text-[#F5C400]">R$ 160<span className="text-lg text-gray-500">/mês</span></div>
-                <p className="text-xs text-gray-600 mt-2 font-bold uppercase">Pix ou Boleto</p>
-                <p className="text-xs text-gray-600 mt-1">Cartão: R$ 176/mês</p>
-              </div>
-              <ul className="space-y-4 mb-10 flex-1">
-                <li className="flex items-center gap-3 text-white text-sm font-bold">
-                  <CheckCircle2 size={18} className="text-[#F5C400]" /> Acesso a 2 modalidades
-                </li>
-                <li className="flex items-center gap-3 text-white text-sm font-bold">
-                  <CheckCircle2 size={18} className="text-[#F5C400]" /> Desconto em Workshops
-                </li>
-                <li className="flex items-center gap-3 text-white text-sm font-bold">
-                  <CheckCircle2 size={18} className="text-[#F5C400]" /> Acesso antecipado a eventos
-                </li>
-                <li className="flex items-center gap-3 text-white text-sm font-bold">
-                  <CheckCircle2 size={18} className="text-[#F5C400]" /> Mentoria em grupo mensal
-                </li>
-              </ul>
-              <a href="https://wa.me/5524992645678?text=Quero%20me%20inscrever%20no%20Plano%202x%20por%20semana" className="w-full bg-[#F5C400] text-black py-5 rounded-xl font-['Anton'] text-xl uppercase tracking-widest hover:scale-105 transition-transform flex items-center justify-center">
-                QUERO ESTE PLANO
+              <a href="https://wa.me/5524992645678?text=Quero%20me%20inscrever%20no%20Plano%202x%20por%20semana" className="mt-10 w-full bg-[#F5C400] text-black py-5 rounded-xl font-['Anton'] text-xl uppercase tracking-widest hover:scale-105 transition-transform flex items-center justify-center">
+                Invista em você
               </a>
             </div>
-
-            {/* Plano Anual */}
-            <div className="p-card bg-[#111] p-10 rounded-3xl border border-white/5 flex flex-col relative">
-              <div className="absolute top-6 right-6">
-                <div className="bg-green-500/10 text-green-500 text-[10px] font-bold px-3 py-1 rounded-full border border-green-500/20 uppercase tracking-widest">
-                  Melhor Custo-Benefício
-                </div>
-              </div>
-              <div className="mb-8">
-                <h3 className="font-['Anton'] text-3xl uppercase tracking-wider mb-2">ANUAL</h3>
-                <p className="text-gray-500 text-sm font-bold uppercase tracking-widest">2x por semana</p>
-              </div>
-              <div className="mb-8 space-y-4">
-                <div>
-                  <div className="text-xs text-gray-500 uppercase font-bold mb-1">À Vista (15% OFF)</div>
-                  <div className="text-4xl font-['Anton'] text-[#F5C400]">R$ 1.632</div>
-                </div>
-                <div>
-                  <div className="text-xs text-gray-500 uppercase font-bold mb-1">Parcelado</div>
-                  <div className="text-3xl font-['Anton'] text-white">12x R$ 160</div>
-                </div>
-                <p className="text-xs text-green-500 font-bold uppercase">Preço travado por 1 ano</p>
-              </div>
-              <ul className="space-y-4 mb-10 flex-1">
-                <li className="flex items-center gap-3 text-gray-400 text-sm font-medium">
-                  <CheckCircle2 size={18} className="text-[#F5C400]" /> Proteção contra reajustes
-                </li>
-                <li className="flex items-center gap-3 text-gray-400 text-sm font-medium">
-                  <CheckCircle2 size={18} className="text-[#F5C400]" /> Camiseta URBrasil Grátis
-                </li>
-                <li className="flex items-center gap-3 text-gray-400 text-sm font-medium">
-                  <CheckCircle2 size={18} className="text-[#F5C400]" /> 1 Workshop internacional incluso
-                </li>
-              </ul>
-              <a href="https://wa.me/5524992645678?text=Quero%20fazer%20a%20assinatura%20anual%20da%20URBRASIL" className="w-full border border-white/20 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center">
-                Assinar Anual
-              </a>
-            </div>
-          </div>
-
-          {/* Garantia */}
-          <div className="mt-20 text-center bg-[#111] p-8 rounded-3xl border border-white/5 max-w-3xl mx-auto">
-            <div className="flex justify-center mb-4">
-              <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center text-green-500">
-                <CheckCircle2 size={32} />
-              </div>
-            </div>
-            <h4 className="font-['Anton'] text-2xl uppercase mb-2">RISCO ZERO</h4>
-            <p className="text-gray-500 text-sm">
-              Experimente sua primeira aula. Se não se adaptar, devolvemos seu investimento sem perguntas. 
-              Acreditamos tanto na nossa metodologia que o risco é todo nosso.
-            </p>
           </div>
         </div>
       </section>

@@ -17,6 +17,7 @@ export const GET_POSTS = gql`
       slug
       descricao
       date
+      categoria
       file {
         url
       }
@@ -30,6 +31,7 @@ export interface Post {
   slug: string;
   descricao: string;
   date: string;
+  categoria: string;
   file?: {
     url: string;
   };

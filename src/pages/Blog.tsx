@@ -6,11 +6,14 @@ export default function Blog() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('Todos');
   const [visibleCount, setVisibleCount] = useState(6);
+
+  const categories = ['Todos', ...Array.from(new Set(posts.map(p => p.categoria)))];
 
   useEffect(() => {
     setVisibleCount(6);
-  }, [searchQuery]);
+  }, [searchQuery, selectedCategory]);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -35,8 +38,9 @@ export default function Blog() {
   }
 
   const filteredPosts = posts.filter(post => 
-    post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    (post.descricao && post.descricao.toLowerCase().includes(searchQuery.toLowerCase()))
+    (selectedCategory === 'Todos' || post.categoria === selectedCategory) &&
+    (post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    (post.descricao && post.descricao.toLowerCase().includes(searchQuery.toLowerCase())))
   );
 
   const displayedPosts = filteredPosts.slice(0, visibleCount);
@@ -67,6 +71,23 @@ export default function Blog() {
                 className="w-full bg-[#111] border border-[#1A1A1A] text-white rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-[#F5C400] focus:ring-1 focus:ring-[#F5C400] transition-all font-['Barlow'] placeholder:text-gray-600"
               />
             </div>
+          </div>
+          
+          {/* Category Filter */}
+          <div className="mt-8 flex flex-wrap gap-2">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-4 py-2 rounded-full text-sm font-bold uppercase tracking-widest transition-all ${
+                  selectedCategory === cat 
+                    ? 'bg-[#F5C400] text-black' 
+                    : 'bg-[#111] text-gray-400 hover:bg-[#1A1A1A] hover:text-white'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
         </header>
 
