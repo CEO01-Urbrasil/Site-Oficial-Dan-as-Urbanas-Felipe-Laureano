@@ -2,7 +2,7 @@
 
 Plataforma oficial de alta conversão para Felipe Laureano, referência em danças urbanas, CEO do Movimento e diretor da URBrasil.
 
-O projeto foca em captar alunos para as modalidades de **Hip Hop Dance, Charme, Dança Afro e Contemporâneo**, com forte otimização (SEO) para **Petrópolis, Rio de Janeiro**.
+O projeto foca em captar alunos para as modalidades de **Hip Hop Dance, House Dance, Breaking, Dança Infantil, Dança para PCD e Terceira Idade**, com forte otimização (SEO) para **Petrópolis, Rio de Janeiro**.
 
 ## 🚀 Funcionalidades
 

@@ -1,12 +1,26 @@
-import { ShoppingCart, Star } from 'lucide-react';
+import React, { useState } from 'react';
+import { ShoppingCart, Star, Heart, MessageCircle } from 'lucide-react';
 
 export default function Store() {
+  const [wishlist, setWishlist] = useState<number[]>([]);
+
+  const toggleWishlist = (id: number) => {
+    setWishlist(prev => 
+      prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]
+    );
+  };
+
+  const handleBuy = (productName: string) => {
+    const message = encodeURIComponent(`Olá! Gostaria de comprar o produto: ${productName} da loja URBrasil.`);
+    window.open(`https://wa.me/5524992645678?text=${message}`, '_blank');
+  };
+
   const products = [
     {
       id: 1,
       name: 'Camiseta Oficial URBrasil',
       price: 'R$ 89,90',
-      image: 'https://i.postimg.cc/CxtHhTGT/Audição_felipe_Laure_30.jpg', // Placeholder
+      image: 'https://i.postimg.cc/TPK1ms0g/foto_cara.png', // Corrected image URL
       rating: 5,
       badge: 'MAIS VENDIDO'
     },
@@ -59,6 +73,16 @@ export default function Store() {
                     {product.badge}
                   </span>
                 )}
+                <button 
+                  onClick={() => toggleWishlist(product.id)}
+                  className={`absolute top-4 right-4 p-3 rounded-full backdrop-blur-md border transition-all z-20 ${
+                    wishlist.includes(product.id) 
+                    ? 'bg-red-500 border-red-500 text-white scale-110 shadow-[0_0_15px_rgba(239,68,68,0.5)]' 
+                    : 'bg-black/40 border-white/10 text-white hover:bg-white hover:text-black'
+                  }`}
+                >
+                  <Heart size={18} fill={wishlist.includes(product.id) ? "currentColor" : "none"} />
+                </button>
                 <img 
                   src={product.image} 
                   alt={product.name} 
@@ -76,9 +100,12 @@ export default function Store() {
                 <h3 className="font-['Barlow_Condensed'] text-2xl font-bold mb-2 uppercase tracking-wide">{product.name}</h3>
                 <p className="text-xl font-['Anton'] text-[#F5C400] mb-6 mt-auto">{product.price}</p>
                 
-                <button className="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-[#F5C400] transition-colors flex items-center justify-center gap-2 uppercase tracking-widest text-sm">
-                  <ShoppingCart size={18} />
-                  Adicionar
+                <button 
+                  onClick={() => handleBuy(product.name)}
+                  className="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-[#F5C400] transition-colors flex items-center justify-center gap-2 uppercase tracking-widest text-sm"
+                >
+                  <MessageCircle size={18} />
+                  Comprar via WhatsApp
                 </button>
               </div>
             </div>

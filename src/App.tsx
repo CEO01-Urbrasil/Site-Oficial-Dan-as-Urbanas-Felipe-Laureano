@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Store from './pages/Store';
 import Blog from './pages/Blog';
+import FelipeLaureano from './pages/FelipeLaureano';
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -33,6 +34,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/felipe-laureano" element={<FelipeLaureano />} />
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
         
         {/* Authenticated Routes */}

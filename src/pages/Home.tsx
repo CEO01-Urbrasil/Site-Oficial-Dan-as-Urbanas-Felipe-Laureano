@@ -7,14 +7,19 @@ import {
   Instagram, 
   Youtube, 
   MessageCircle, 
+  Facebook,
+  Twitter,
   ChevronDown, 
+  ChevronLeft,
+  ChevronRight,
   Music, 
   Zap, 
   Star, 
   Users, 
   Smartphone,
   Clock,
-  ArrowLeft
+  ArrowLeft,
+  Quote
 } from 'lucide-react';
 
 export default function Home() {
@@ -27,6 +32,12 @@ export default function Home() {
       const s = window.scrollY;
       const g = document.getElementById('ghost');
       if (g) g.style.transform = `translate(-50%,calc(-50% + ${s * 0.3}px))`;
+      
+      const h = document.getElementById('hero-bg');
+      if (h) h.style.transform = `translateY(${s * 0.4}px)`;
+
+      const b = document.getElementById('hero-badge');
+      if (b) b.style.transform = `translateY(${s * -0.2}px)`;
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -66,6 +77,60 @@ export default function Home() {
 
   const formatNum = (num: number) => num.toString().padStart(2, '0');
 
+  const ModalidadeCarousel = ({ images }: { images: { url: string, caption: string }[] }) => {
+    const [current, setCurrent] = useState(0);
+
+    const next = (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setCurrent((prev) => (prev + 1) % images.length);
+    };
+    const prev = (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setCurrent((prev) => (prev - 1 + images.length) % images.length);
+    };
+
+    return (
+      <div className="relative group/carousel aspect-square rounded-2xl overflow-hidden mb-6 bg-[#111] border border-white/5">
+        <div className="flex h-full transition-transform duration-500 ease-out" style={{ transform: `translateX(-${current * 100}%)` }}>
+          {images.map((img, i) => (
+            <div key={i} className="min-w-full h-full relative">
+              <img src={img.url} alt={img.caption} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" referrerPolicy="no-referrer" />
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
+                <p className="text-[10px] text-white font-bold uppercase tracking-[0.2em] leading-tight">{img.caption}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        {images.length > 1 && (
+          <>
+            <button 
+              onClick={prev} 
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-[#F5C400] hover:text-black hover:scale-110 z-20 border border-white/10"
+              aria-label="Anterior"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button 
+              onClick={next} 
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-[#F5C400] hover:text-black hover:scale-110 z-20 border border-white/10"
+              aria-label="Próximo"
+            >
+              <ChevronRight size={20} />
+            </button>
+            <div className="absolute bottom-14 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+              {images.map((_, i) => (
+                <div key={i} className={`w-1 h-1 rounded-full transition-all ${current === i ? 'bg-[#F5C400] scale-125' : 'bg-white/30'}`} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="landing-page bg-[#0A0A0A] text-white font-['Barlow'] overflow-x-hidden">
       {/* Header */}
@@ -89,11 +154,12 @@ export default function Home() {
       {/* Hero */}
       <section className="hero relative min-h-screen flex items-center pt-20 overflow-hidden" id="hero">
         <div className="ghost absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-['Anton'] text-[20vw] opacity-[0.03] pointer-events-none select-none z-0" id="ghost">URBRASIL</div>
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <img 
+            id="hero-bg"
             src="https://i.postimg.cc/VkTBfQjR/Audição_felipe_Laure_125.jpg" 
             alt="Felipe Laureano" 
-            className="w-full h-full object-cover opacity-40 grayscale"
+            className="w-full h-full object-cover opacity-40 grayscale will-change-transform"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent"></div>
         </div>
@@ -106,10 +172,10 @@ export default function Home() {
             <h1 className="font-['Anton'] text-6xl md:text-8xl lg:text-9xl leading-[0.8] uppercase tracking-tighter mb-8">
               DANÇAS <br />
               URBANAS COM <br />
-              <span className="text-[#F5C400] whitespace-nowrap">FELIPE LAUREANO</span>
+              <Link to="/felipe-laureano" className="text-[#F5C400] whitespace-nowrap hover:underline decoration-2 underline-offset-8">FELIPE LAUREANO</Link>
             </h1>
             <p className="text-xl md:text-2xl text-gray-400 max-w-lg mb-10 font-medium">
-              Aulas exclusivas com <span className="whitespace-nowrap">Felipe Laureano</span> em Petrópolis. Hip Hop, Charme, Afro e Contemporâneo.
+              Aulas exclusivas com <Link to="/felipe-laureano" className="whitespace-nowrap hover:text-[#F5C400] transition-colors">Felipe Laureano</Link> em Petrópolis. Hip Hop, House, Breaking, Infantil, PCD e Terceira Idade.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="#precos" className="bg-[#F5C400] text-black font-['Anton'] text-2xl px-10 py-5 rounded-xl flex items-center justify-center gap-3 hover:scale-105 transition-transform">
@@ -123,8 +189,8 @@ export default function Home() {
         </div>
 
         {/* Floating Badges */}
-        <div className="absolute bottom-10 right-10 hidden lg:block">
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-2xl max-w-xs">
+        <div className="absolute bottom-10 right-10 hidden lg:block" id="hero-badge">
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-2xl max-w-xs will-change-transform">
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-12 bg-[#F5C400] rounded-full flex items-center justify-center text-black">
                 <Users size={24} />
@@ -144,7 +210,7 @@ export default function Home() {
         <div className="flex gap-10 animate-marquee">
           {[...Array(10)].map((_, i) => (
             <span key={i} className="font-['Anton'] text-4xl text-black uppercase tracking-widest">
-              HIP HOP • CHARME • AFRO • CONTEMPORÂNEO • URBRASIL • MOVIMENTO • 
+              HIP HOP • HOUSE • BREAKING • INFANTIL • PCD • TERCEIRA IDADE • URBRASIL • 
             </span>
           ))}
         </div>
@@ -157,9 +223,10 @@ export default function Home() {
             <div className="piw relative">
               <div className="aspect-[4/5] rounded-3xl overflow-hidden border-2 border-[#F5C400] relative z-10">
                 <img 
-                  src="https://i.postimg.cc/bwMHycQ5/Audição_felipe_Laure_12.jpg" 
+                  src="https://i.postimg.cc/HsMZz9sy/DSC_6966.jpg" 
                   alt="Felipe Laureano" 
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                  referrerPolicy="no-referrer"
                 />
               </div>
               <div className="absolute -bottom-10 -right-10 w-full h-full border-2 border-white/10 rounded-3xl -z-0"></div>
@@ -176,7 +243,7 @@ export default function Home() {
               </h2>
               <div className="space-y-6 text-lg text-gray-400 font-medium">
                 <p>
-                  <span className="whitespace-nowrap">Felipe Laureano</span> é uma das maiores referências em danças urbanas da região. Com passagens por grandes palcos e workshops internacionais, ele traz para Petrópolis uma metodologia única que une técnica, história e expressão.
+                  <Link to="/felipe-laureano" className="whitespace-nowrap font-bold text-white hover:text-[#F5C400] transition-colors">Felipe Laureano</Link> é uma das maiores referências em danças urbanas da região. Com passagens por grandes palcos e workshops internacionais, ele traz para Petrópolis uma metodologia única que une técnica, história e expressão.
                 </p>
                 <p>
                   Fundador da URBRASIL, Felipe acredita que a dança é uma ferramenta de transformação social e autoconhecimento. Suas aulas não são apenas sobre passos, mas sobre encontrar sua própria voz através do corpo.
@@ -206,19 +273,74 @@ export default function Home() {
             <p className="text-xl text-gray-500 max-w-2xl mx-auto">Escolha o estilo que mais combina com sua energia e comece sua jornada.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: 'Hip Hop Dance', desc: 'Fundamentos, grooves e coreografias da cultura urbana.', icon: Music },
-              { title: 'Charme', desc: 'Elegância, passos sociais e a essência dos bailes black.', icon: Star },
-              { title: 'Dança Afro', desc: 'Conexão ancestral, força e ritmos tradicionais.', icon: Zap },
-              { title: 'Contemporâneo', desc: 'Expressão, fluidez e pesquisa de movimento.', icon: Users },
+              { 
+                title: 'Hip Hop Dance', 
+                desc: 'Fundamentos, grooves e coreografias da cultura urbana.', 
+                icon: Music,
+                images: [
+                  { url: 'https://i.postimg.cc/HLBn5xDq/34842538_1935308959853686_5717212640527253504_n.jpg', caption: 'Groove e atitude no palco.' },
+                  { url: 'https://i.postimg.cc/HLBn5xDq/34842538_1935308959853686_5717212640527253504_n.jpg', caption: 'Técnica e expressão corporal.' },
+                  { url: 'https://i.postimg.cc/HLBn5xDq/34842538_1935308959853686_5717212640527253504_n.jpg', caption: 'Energia das ruas em cada passo.' }
+                ]
+              },
+              { 
+                title: 'House Dance', 
+                desc: 'Fluidez, footwork e a energia das pistas de Chicago.', 
+                icon: Zap,
+                images: [
+                  { url: 'https://i.postimg.cc/HLBn5xDq/34842538_1935308959853686_5717212640527253504_n.jpg', caption: 'Fluidez e ritmo constante.' },
+                  { url: 'https://i.postimg.cc/HLBn5xDq/34842538_1935308959853686_5717212640527253504_n.jpg', caption: 'A essência das pistas de Chicago.' },
+                  { url: 'https://i.postimg.cc/HLBn5xDq/34842538_1935308959853686_5717212640527253504_n.jpg', caption: 'Conexão com a música eletrônica.' }
+                ]
+              },
+              { 
+                title: 'Breaking', 
+                desc: 'Acrobacias, power moves e a essência do breaking original.', 
+                icon: Star,
+                images: [
+                  { url: 'https://i.postimg.cc/V6kSHtWJ/Tayna_Sampaio_36.gif', caption: 'A arte do breaking.' },
+                  { url: 'https://i.postimg.cc/V6kSHtWJ/Tayna_Sampaio_36.gif', caption: 'A arte do breaking.' }
+                ]
+              },
+              { 
+                title: 'Dança Infantil', 
+                desc: 'Desenvolvimento lúdico e coordenação para os pequenos.', 
+                icon: Users,
+                images: [
+                  { url: 'https://i.postimg.cc/HLBn5xDq/34842538_1935308959853686_5717212640527253504_n.jpg', caption: 'Diversão e aprendizado lúdico.' },
+                  { url: 'https://i.postimg.cc/HLBn5xDq/34842538_1935308959853686_5717212640527253504_n.jpg', caption: 'Primeiros passos na cultura urbana.' }
+                ]
+              },
+              { 
+                title: 'Dança para PCD', 
+                desc: 'Inclusão total e adaptação criativa através do movimento.', 
+                icon: CheckCircle2,
+                images: [
+                  { url: 'https://i.postimg.cc/HLBn5xDq/34842538_1935308959853686_5717212640527253504_n.jpg', caption: 'Superação e arte sem limites.' },
+                  { url: 'https://i.postimg.cc/HLBn5xDq/34842538_1935308959853686_5717212640527253504_n.jpg', caption: 'O corpo como instrumento de voz.' }
+                ]
+              },
+              { 
+                title: 'Terceira Idade', 
+                desc: 'Saúde, ritmo e socialização para a melhor idade.', 
+                icon: Clock,
+                images: [
+                  { url: 'https://i.postimg.cc/HLBn5xDq/34842538_1935308959853686_5717212640527253504_n.jpg', caption: 'Vitalidade e alegria no movimento.' },
+                  { url: 'https://i.postimg.cc/HLBn5xDq/34842538_1935308959853686_5717212640527253504_n.jpg', caption: 'Saúde física e mental através da dança.' }
+                ]
+              },
             ].map((item, i) => (
-              <div key={i} className="bg-[#1A1A1A] p-10 rounded-3xl border border-white/5 hover:border-[#F5C400] transition-all group">
-                <div className="w-16 h-16 bg-[#F5C400] rounded-2xl flex items-center justify-center text-black mb-8 transform group-hover:rotate-12 transition-transform">
-                  <item.icon size={32} />
+              <div key={i} className="bg-[#1A1A1A] p-8 rounded-3xl border border-white/5 hover:border-[#F5C400] transition-all group">
+                <ModalidadeCarousel images={item.images} />
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-10 h-10 bg-[#F5C400] rounded-xl flex items-center justify-center text-black transform group-hover:rotate-12 transition-transform shrink-0">
+                    <item.icon size={20} />
+                  </div>
+                  <h3 className="font-['Anton'] text-2xl uppercase tracking-wider">{item.title}</h3>
                 </div>
-                <h3 className="font-['Anton'] text-3xl mb-4 uppercase tracking-wider">{item.title}</h3>
-                <p className="text-gray-500 leading-relaxed">{item.desc}</p>
+                <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -247,6 +369,62 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-6">
             <img src="https://i.postimg.cc/VkTBfQjR/Audição_felipe_Laure_125.jpg" className="rounded-3xl aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all" alt="Dance 1" />
             <img src="https://i.postimg.cc/bwMHycQ5/Audição_felipe_Laure_12.jpg" className="rounded-3xl aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all mt-12" alt="Dance 2" />
+          </div>
+        </div>
+      </section>
+      
+      {/* Depoimentos */}
+      <section className="rev py-32 bg-[#111] px-6 relative overflow-hidden">
+        <div className="container max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="st font-['Anton'] text-6xl md:text-8xl uppercase mb-4">O QUE DIZEM <span className="text-[#F5C400]">NOSSOS ALUNOS</span></h2>
+            <p className="text-xl text-gray-500 max-w-2xl mx-auto">Histórias reais de quem vive a cultura urbana todos os dias.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Ana Silva",
+                role: "Aluna de Hip Hop",
+                text: "A URBrasil mudou minha forma de ver a dança. O Felipe é um mestre incrível que nos desafia a cada aula a encontrar nossa própria identidade.",
+                img: "https://picsum.photos/seed/ana/200/200"
+              },
+              {
+                name: "Lucas Santos",
+                role: "Aluno de House",
+                text: "Ambiente acolhedor e técnica de alto nível. Comecei como iniciante e hoje me sinto confiante para improvisar em qualquer pista.",
+                img: "https://picsum.photos/seed/lucas/200/200"
+              },
+              {
+                name: "Mariana Costa",
+                role: "Mãe de Aluna",
+                text: "Minha filha ama as aulas infantis. O desenvolvimento da coordenação e da confiança dela é nítido. Uma escola que realmente se importa.",
+                img: "https://picsum.photos/seed/mari/200/200"
+              }
+            ].map((testimonial, i) => (
+              <div key={i} className="bg-[#1A1A1A] p-10 rounded-3xl border border-white/5 relative group hover:border-[#F5C400]/50 transition-all">
+                <Quote className="absolute top-8 right-8 text-[#F5C400]/20 group-hover:text-[#F5C400]/40 transition-colors" size={48} />
+                
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#F5C400]">
+                    <img 
+                      src={testimonial.img} 
+                      alt={testimonial.name} 
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="font-['Anton'] text-xl uppercase tracking-wider">{testimonial.name}</h4>
+                    <p className="text-[#F5C400] text-xs font-bold uppercase tracking-widest">{testimonial.role}</p>
+                  </div>
+                </div>
+
+                <p className="text-gray-400 italic leading-relaxed font-medium">
+                  "{testimonial.text}"
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -295,8 +473,8 @@ export default function Home() {
                   <CheckCircle2 size={18} className="text-[#F5C400]" /> Certificado de participação
                 </li>
               </ul>
-              <a href="https://wa.me/5524992211941?text=Quero%20me%20inscrever%20no%20Plano%201x%20por%20semana" className="w-full border border-white/20 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center">
-                Selecionar Plano
+              <a href="https://wa.me/5524992645678?text=Quero%20me%20inscrever%20no%20Plano%201x%20por%20semana" className="w-full border border-white/20 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center">
+                Inscrever via WhatsApp
               </a>
             </div>
 
@@ -328,7 +506,7 @@ export default function Home() {
                   <CheckCircle2 size={18} className="text-[#F5C400]" /> Mentoria em grupo mensal
                 </li>
               </ul>
-              <a href="https://wa.me/5524992211941?text=Quero%20me%20inscrever%20no%20Plano%202x%20por%20semana" className="w-full bg-[#F5C400] text-black py-5 rounded-xl font-['Anton'] text-xl uppercase tracking-widest hover:scale-105 transition-transform flex items-center justify-center">
+              <a href="https://wa.me/5524992645678?text=Quero%20me%20inscrever%20no%20Plano%202x%20por%20semana" className="w-full bg-[#F5C400] text-black py-5 rounded-xl font-['Anton'] text-xl uppercase tracking-widest hover:scale-105 transition-transform flex items-center justify-center">
                 QUERO ESTE PLANO
               </a>
             </div>
@@ -344,10 +522,16 @@ export default function Home() {
                 <h3 className="font-['Anton'] text-3xl uppercase tracking-wider mb-2">ANUAL</h3>
                 <p className="text-gray-500 text-sm font-bold uppercase tracking-widest">2x por semana</p>
               </div>
-              <div className="mb-8">
-                <div className="text-5xl font-['Anton'] text-[#F5C400]">12x R$ 160</div>
-                <p className="text-xs text-gray-600 mt-2 font-bold uppercase">Sem acréscimo no cartão</p>
-                <p className="text-xs text-green-500 mt-1 font-bold uppercase">Preço travado por 1 ano</p>
+              <div className="mb-8 space-y-4">
+                <div>
+                  <div className="text-xs text-gray-500 uppercase font-bold mb-1">À Vista (15% OFF)</div>
+                  <div className="text-4xl font-['Anton'] text-[#F5C400]">R$ 1.632</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 uppercase font-bold mb-1">Parcelado</div>
+                  <div className="text-3xl font-['Anton'] text-white">12x R$ 160</div>
+                </div>
+                <p className="text-xs text-green-500 font-bold uppercase">Preço travado por 1 ano</p>
               </div>
               <ul className="space-y-4 mb-10 flex-1">
                 <li className="flex items-center gap-3 text-gray-400 text-sm font-medium">
@@ -360,7 +544,7 @@ export default function Home() {
                   <CheckCircle2 size={18} className="text-[#F5C400]" /> 1 Workshop internacional incluso
                 </li>
               </ul>
-              <a href="https://wa.me/5524992211941?text=Quero%20saber%20mais%20sobre%20o%20Plano%20Anual%2012x" className="w-full border border-white/20 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center">
+              <a href="https://wa.me/5524992645678?text=Quero%20fazer%20a%20assinatura%20anual%20da%20URBRASIL" className="w-full border border-white/20 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center">
                 Assinar Anual
               </a>
             </div>
@@ -461,6 +645,39 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Social Media Section */}
+      <section className="social-section py-24 px-6 bg-black relative overflow-hidden">
+        <div className="container max-w-7xl mx-auto text-center relative z-10">
+          <div className="inline-flex items-center gap-2 bg-[#F5C400]/10 text-[#F5C400] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-6 border border-[#F5C400]/20">
+            <Users size={14} /> COMUNIDADE URBRASIL
+          </div>
+          <h2 className="st font-['Anton'] text-6xl md:text-8xl uppercase mb-12 leading-none">SIGA O <span className="text-[#F5C400]">MOVIMENTO</span></h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <a href="https://instagram.com/felipelaureano.o" target="_blank" rel="noreferrer" className="group p-10 bg-[#111] rounded-3xl border border-white/5 hover:border-[#F5C400]/50 transition-all">
+              <Instagram size={48} className="mx-auto mb-6 text-gray-500 group-hover:text-[#F5C400] transition-colors" />
+              <div className="font-['Anton'] text-xl uppercase tracking-wider">Instagram</div>
+              <div className="text-xs text-gray-600 uppercase tracking-widest mt-2">@felipelaureano.o</div>
+            </a>
+            <a href="https://youtube.com/urbanamentebr" target="_blank" rel="noreferrer" className="group p-10 bg-[#111] rounded-3xl border border-white/5 hover:border-[#F5C400]/50 transition-all">
+              <Youtube size={48} className="mx-auto mb-6 text-gray-500 group-hover:text-[#F5C400] transition-colors" />
+              <div className="font-['Anton'] text-xl uppercase tracking-wider">YouTube</div>
+              <div className="text-xs text-gray-600 uppercase tracking-widest mt-2">Urbanamente BR</div>
+            </a>
+            <a href="https://facebook.com/urbrasil" target="_blank" rel="noreferrer" className="group p-10 bg-[#111] rounded-3xl border border-white/5 hover:border-[#F5C400]/50 transition-all">
+              <Facebook size={48} className="mx-auto mb-6 text-gray-500 group-hover:text-[#F5C400] transition-colors" />
+              <div className="font-['Anton'] text-xl uppercase tracking-wider">Facebook</div>
+              <div className="text-xs text-gray-600 uppercase tracking-widest mt-2">URBrasil Oficial</div>
+            </a>
+            <a href="https://wa.me/5524992645678" target="_blank" rel="noreferrer" className="group p-10 bg-[#111] rounded-3xl border border-white/5 hover:border-[#F5C400]/50 transition-all">
+              <MessageCircle size={48} className="mx-auto mb-6 text-gray-500 group-hover:text-[#F5C400] transition-colors" />
+              <div className="font-['Anton'] text-xl uppercase tracking-wider">WhatsApp</div>
+              <div className="text-xs text-gray-600 uppercase tracking-widest mt-2">(24) 99264-5678</div>
+            </a>
+          </div>
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#F5C400]/5 rounded-full blur-[120px] -z-0"></div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-[#111] py-20 px-6 border-t border-white/5">
         <div className="container max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
@@ -472,6 +689,8 @@ export default function Home() {
             <div className="fsocial flex gap-6">
               <a href="https://instagram.com/felipelaureano.o" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><Instagram size={24} /></a>
               <a href="https://youtube.com/urbanamentebr" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><Youtube size={24} /></a>
+              <a href="https://facebook.com/urbrasil" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><Facebook size={24} /></a>
+              <a href="https://twitter.com/urbrasil" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><Twitter size={24} /></a>
               <a href="https://wa.me/5524992645678" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><MessageCircle size={24} /></a>
             </div>
           </div>
