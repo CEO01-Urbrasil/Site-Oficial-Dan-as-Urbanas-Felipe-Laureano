@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { db, auth } from '../firebase';
+import { db, auth, registerWithEmail } from '../firebase';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,6 +19,8 @@ export default function Quiz() {
   const [answers, setAnswers] = useState<string[]>([]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [finished, setFinished] = useState(false);
   const navigate = useNavigate();
 
@@ -29,15 +31,25 @@ export default function Quiz() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (auth.currentUser) {
-      await setDoc(doc(db, 'users', auth.currentUser.uid), {
-        uid: auth.currentUser.uid,
-        name,
-        email,
-        quizResult: answers.join(' | '),
-        createdAt: serverTimestamp()
-      });
-      setFinished(true);
+    setError('');
+    try {
+      let user = auth.currentUser;
+      if (!user) {
+        user = await registerWithEmail(email, password);
+      }
+      
+      if (user) {
+        await setDoc(doc(db, 'users', user.uid), {
+          uid: user.uid,
+          name,
+          email,
+          quizResult: answers.join(' | '),
+          createdAt: serverTimestamp()
+        });
+        setFinished(true);
+      }
+    } catch (err: any) {
+      setError(err.message);
     }
   };
 
@@ -73,9 +85,13 @@ export default function Quiz() {
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white p-8 flex flex-col items-center justify-center">
       <h2 className="text-3xl font-['Anton'] mb-8">Para finalizar, conte-nos quem é você:</h2>
+      {error && <p className="text-red-500 mb-4">{error}</p>}
       <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4">
         <input type="text" placeholder="Nome" value={name} onChange={e => setName(e.target.value)} required className="w-full p-4 rounded-xl bg-[#111] border border-white/10" />
         <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required className="w-full p-4 rounded-xl bg-[#111] border border-white/10" />
+        {!auth.currentUser && (
+          <input type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} required className="w-full p-4 rounded-xl bg-[#111] border border-white/10" />
+        )}
         <button type="submit" className="w-full bg-[#F5C400] text-black p-4 rounded-xl font-bold uppercase">Finalizar</button>
       </form>
     </div>
