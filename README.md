@@ -6,9 +6,11 @@ O projeto foca em captar alunos para as modalidades de Hip Hop Dance, Charme, Da
 
 ## Estrutura e Gatilhos Mentais
 
-- **Autoridade:** Uso da imagem forte e do currículo de Felipe Laureano (CEO do Movimento, URBrasil, etc).
-- **Escassez e Urgência:** Vagas limitadas, audição "pela primeira vez".
+- **Autoridade Máxima:** Inclusão de credenciais de peso como Bailarino da TV Globo, The Voice Brasil, Coordenador Original Skillz Brasil e atuação global (Vietnã, Colômbia, Argentina, Londrina, Estônia com Vahur Vako).
+- **Escassez e Urgência (Funil Perpétuo):** O carrinho (matrículas) fica aberto perpetuamente, mas há um gatilho de urgência: matrículas feitas *presencialmente* até o dia 20 de Março garantem isenção de taxa e condição exclusiva.
 - **Funil de Vendas:** Modalidades bem separadas com opções de pagamento (Mensal e Trimestral com destaque) e botões diretos para o WhatsApp com mensagens pré-configuradas.
+- **Novo Produto (App):** Seção de antecipação ("Em Breve") para o aplicativo "Sala de Treino", focado em exercícios de danças urbanas em casa.
+- **Área de Membros:** Header fixo com botão de login para alunos.
 - **SEO:** Meta tags e descrições otimizadas para os termos de busca relevantes para a região de Petrópolis.
 
 ## Prompts de Geração (Baseados na Autoridade)
