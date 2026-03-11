@@ -1,17 +1,17 @@
 # O Legado do Movimento - Felipe Laureano
 
-Landing page de alta conversão para Felipe Laureano, CEO do Movimento, ex-presidente do conselho de cultura de Petrópolis, CEO SMS @urbrasil e diretor do filme Sufoco.
+Plataforma e comunidade de alta conversão para Felipe Laureano, CEO do Movimento, ex-presidente do conselho de cultura de Petrópolis, CEO SMS @urbrasil e diretor do filme Sufoco.
 
-O projeto foca em captar alunos para as modalidades de Hip Hop Dance, Charme, Dança Afro e Dança Contemporânea, além de promover a audição histórica integrada à URBrasil.com.
+O projeto foca em captar alunos para as modalidades de **Hip Hop Dance, House Dance, Dança Infantil, Street Dance e Afro House**, com forte otimização (SEO) para o **Centro de Petrópolis, Rio de Janeiro**.
 
 ## Estrutura e Gatilhos Mentais
 
 - **Autoridade Máxima:** Inclusão de credenciais de peso como Bailarino da TV Globo, The Voice Brasil, Coordenador Original Skillz Brasil e atuação global (Vietnã, Colômbia, Argentina, Londrina, Estônia com Vahur Vako).
-- **Escassez e Urgência (Funil Perpétuo):** O carrinho (matrículas) fica aberto perpetuamente, mas há um gatilho de urgência: matrículas feitas *presencialmente* até o dia 20 de Março garantem isenção de taxa e condição exclusiva.
-- **Funil de Vendas:** Modalidades bem separadas com opções de pagamento (Mensal e Trimestral com destaque) e botões diretos para o WhatsApp com mensagens pré-configuradas.
-- **Novo Produto (App):** Seção de antecipação ("Em Breve") para o aplicativo "Sala de Treino", focado em exercícios de danças urbanas em casa.
-- **Área de Membros:** Header fixo com botão de login para alunos.
-- **SEO:** Meta tags e descrições otimizadas para os termos de busca relevantes para a região de Petrópolis.
+- **Escassez e Urgência (Funil Perpétuo):** O carrinho (matrículas) fica aberto perpetuamente, mas há um gatilho de urgência: matrículas feitas *presencialmente no Centro de Petrópolis* até o dia 20 de Março garantem isenção de taxa e condição exclusiva.
+- **Comunidade Exclusiva (Netflix Style):** Interface imersiva estilo streaming, aumentando a percepção de alto valor (High Ticket) do conteúdo.
+- **Prova Social:** Feed da comunidade integrado onde alunos interagem, gerando engajamento e validação social em tempo real.
+- **SEO Localizado:** Copy reestruturada com palavras-chave de alto engajamento ("Aulas de dança no Centro de Petrópolis", "Estúdio de dança RJ", "Aprender Hip Hop em Petrópolis", "Dança Infantil Petrópolis") para dominar as buscas na região serrana do Rio de Janeiro.
+- **Integração Headless CMS:** Blog e módulos de aulas dinâmicos integrados ao Hygraph via GraphQL (CDN de alta performance).
 
 ## Prompts de Geração (Baseados na Autoridade)
 

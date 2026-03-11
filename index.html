@@ -134,6 +134,8 @@ footer{background:var(--s1);padding:60px 0;border-top:1px solid var(--s2)}
 </style>
 </head>
 <body>
+<div id="root"></div>
+<div id="static-content">
 
 <header class="header">
 <div class="container hc-flex">
@@ -412,6 +414,8 @@ footer{background:var(--s1);padding:60px 0;border-top:1px solid var(--s2)}
 </div>
 </footer>
 
+</div>
+<script type="module" src="/src/main.tsx"></script>
 <script>
 const init = () => {
     window.addEventListener('scroll',()=>{
@@ -454,6 +458,23 @@ if (document.readyState === 'loading') {
 } else {
     init();
 }
+</script>
+<script type="module">
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDgI6m-IQM2vP8ry8rH5jUxcyC1T5ir9vU",
+  authDomain: "aula-felipe-5d4aa.firebaseapp.com",
+  projectId: "aula-felipe-5d4aa",
+  storageBucket: "aula-felipe-5d4aa.firebasestorage.app",
+  messagingSenderId: "525255117148",
+  appId: "1:525255117148:web:cc950985eeb7242db65999",
+  measurementId: "G-0EY88G78FJ"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 </script>
 </body>
 </html>
