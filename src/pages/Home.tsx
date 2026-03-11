@@ -370,8 +370,8 @@ export default function Home() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-6">
-            <img src="https://i.postimg.cc/VkTBfQjR/Audição_felipe_Laure_125.jpg" className="rounded-3xl aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all" alt="Dance 1" />
-            <img src="https://i.postimg.cc/bwMHycQ5/Audição_felipe_Laure_12.jpg" className="rounded-3xl aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all mt-12" alt="Dance 2" />
+            <img src="https://i.postimg.cc/VkTBfQjR/Audição_felipe_Laure_125.jpg" className="rounded-3xl aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all" alt="Alunos da URBrasil praticando dança urbana" />
+            <img src="https://i.postimg.cc/bwMHycQ5/Audição_felipe_Laure_12.jpg" className="rounded-3xl aspect-[3/4] object-cover grayscale hover:grayscale-0 transition-all mt-12" alt="Grupo de dança urbana da URBrasil em apresentação" />
           </div>
         </div>
       </section>

@@ -99,7 +99,7 @@ export default function Dashboard({ user }: { user: User }) {
         <div className="relative h-[60vh] w-full">
           <img 
             src="https://i.postimg.cc/VkTBfQjR/Audição_felipe_Laure_125.jpg" 
-            alt="Featured Class" 
+            alt="Imagem de destaque: Felipe Laureano em aula de dança urbana" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent"></div>
@@ -137,7 +137,7 @@ export default function Dashboard({ user }: { user: User }) {
                   <div key={post.id} className="min-w-[250px] md:min-w-[300px] aspect-video relative rounded-md overflow-hidden group cursor-pointer snap-start flex-shrink-0">
                     <img 
                       src={post.file?.url || 'https://i.postimg.cc/VkTBfQjR/Audição_felipe_Laure_125.jpg'} 
-                      alt={post.title} 
+                      alt={`Capa da aula: ${post.title}`} 
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
                     />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -159,7 +159,7 @@ export default function Dashboard({ user }: { user: User }) {
               <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x">
                 {playlist.items.map((item) => (
                   <div key={item.id} className="min-w-[250px] md:min-w-[300px] aspect-video relative rounded-md overflow-hidden group cursor-pointer snap-start flex-shrink-0">
-                    <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                    <img src={item.img} alt={`Capa da aula: ${item.title}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <Play fill="white" size={48} className="text-white drop-shadow-lg" />
                     </div>
