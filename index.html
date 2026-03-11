@@ -22,9 +22,13 @@ span{color:var(--p)}
 .btn:hover{background:transparent;color:var(--p);border-color:var(--p)}
 .btn:hover::before{top:0;left:0;right:0;bottom:0}
 .btn-txt{display:block;transform:skewX(10deg)}
-.btn-wpp{background:#25D366;color:#fff;}
+.btn-wpp{background:#25D366;color:#fff;animation:pulse-wpp 2s infinite;}
 .btn-wpp::before{border-color:#25D366;}
-.btn-wpp:hover{background:transparent;color:#25D366;border-color:#25D366;}
+.btn-wpp:hover{background:transparent;color:#25D366;border-color:#25D366;animation:none;}
+@keyframes pulse-wpp{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.6)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+.btn-pulse{animation:pulse-yellow 2s infinite;}
+.btn-pulse:hover{animation:none;}
+@keyframes pulse-yellow{0%{box-shadow:0 0 0 0 rgba(245,196,0,0.6)}70%{box-shadow:0 0 0 15px rgba(245,196,0,0)}100%{box-shadow:0 0 0 0 rgba(245,196,0,0)}}
 
 .header{position:fixed;top:0;left:0;width:100%;padding:20px 0;z-index:100;background:rgba(10,10,10,0.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--s2)}
 .hc-flex{display:flex;justify-content:space-between;align-items:center}
@@ -35,6 +39,14 @@ span{color:var(--p)}
 .scarcity-banner{background:var(--p);color:var(--b);padding:32px 24px;text-align:center;font-family:var(--fb);margin-bottom:60px;transform:skewX(-3deg);border:4px solid var(--s2);box-shadow:10px 10px 0 rgba(0,0,0,0.5)}
 .scarcity-banner h4{font-family:var(--fd);font-size:2.5rem;margin-bottom:8px;text-transform:uppercase;line-height:1}
 .scarcity-banner p{font-size:1.3rem;font-weight:600}
+
+.urgency-timer{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px;margin-top:24px;background:rgba(0,0,0,0.1);padding:16px;border-radius:8px;border:1px dashed rgba(0,0,0,0.2)}
+.urgency-text{font-family:var(--fs);font-size:1.5rem;display:flex;align-items:center;gap:12px;letter-spacing:.05em}
+.countdown{display:flex;gap:12px}
+.cd-item{background:var(--b);color:var(--p);padding:12px 16px;border-radius:6px;min-width:70px;display:flex;flex-direction:column;align-items:center;border:1px solid rgba(245,196,0,0.3);transform:skewX(3deg)}
+.cd-item span:first-child{font-family:var(--fd);font-size:2rem;line-height:1}
+.cd-item span:last-child{font-family:var(--fs);font-size:0.9rem;color:#fff;letter-spacing:1px;margin-top:4px}
+@keyframes p2{0%{box-shadow:0 0 0 0 rgba(10,10,10,.7)}70%{box-shadow:0 0 0 10px rgba(10,10,10,0)}100%{box-shadow:0 0 0 0 rgba(10,10,10,0)}}
 
 .app-section{background:var(--s1);padding:120px 0;position:relative;overflow:hidden;border-top:1px solid var(--s2)}
 .app-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
@@ -94,6 +106,16 @@ section{padding:120px 0}
 .ai img:hover{filter:grayscale(0);transform:scale(1.05)}
 .ai img:nth-child(2){transform:translateY(40px)}
 .ai img:nth-child(2):hover{transform:translateY(40px) scale(1.05)}
+
+.faq-section{background:var(--b);padding:120px 0;border-top:1px solid var(--s2)}
+.faq-container{max-width:800px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--s2);padding:24px 0}
+.faq-item details{cursor:pointer}
+.faq-item summary{font-family:var(--fs);font-size:1.3rem;color:#fff;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;letter-spacing:.05em}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';color:var(--p);font-size:2rem;transition:transform .3s;line-height:1}
+.faq-item details[open] summary::after{transform:rotate(45deg)}
+.faq-item p{margin-top:16px;color:#ccc;font-size:1.15rem;line-height:1.6;padding-right:40px}
 
 footer{background:var(--s1);padding:60px 0;border-top:1px solid var(--s2)}
 .fc{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:32px}
@@ -155,13 +177,14 @@ footer{background:var(--s1);padding:60px 0;border-top:1px solid var(--s2)}
 <span class="atag">Coordenador Original Skillz Brasil</span>
 <span class="atag">ONG Internacional c/ Vahur Vako (Estônia)</span>
 <span class="atag">Ex-Presidente do Conselho de Cultura</span>
+<span class="atag">Ex-Representante do Segmento de Dança de Petrópolis</span>
 <span class="atag">CEO SMS @urbrasil</span>
 <span class="atag">Diretor do Filme Sufoco</span>
 </div>
-<p>Felipe Laureano consolidou-se como uma das figuras mais emblemáticas e multifacetadas da dança contemporânea e urbana. Sua trajetória internacional inclui trabalhos pioneiros no <strong>Vietnã, Colômbia, Argentina, Londrina</strong> e parcerias diretas com a Europa.</p>
+<p>Felipe Laureano consolidou-se como uma das figuras mais emblemáticas e multifacetadas da dança contemporânea e urbana. Sua trajetória internacional inclui trabalhos pioneiros no <strong>Vietnã, Colômbia e Argentina</strong>, além de sua base sólida em <strong>Petrópolis, Rio de Janeiro e por todo o Brasil</strong> através da Original Skillz e parcerias diretas com a Europa.</p>
+<p><strong>Pioneirismo e Impacto Cultural:</strong> Foi o realizador do primeiro workshop internacional de danças urbanas da região com <strong>Quentin Mogwai</strong>, do renomado grupo Serial Stepperz (França). Ao ensinar ou dirigir, ele impõe um padrão de excelência onde a clareza de visão e a execução impecável são inegociáveis.</p>
 <p><strong>A Gênese do Movimento e a Maestria Técnica:</strong> Sua técnica é marcada por uma consciência proprioceptiva aguda. Nas danças urbanas, ele não apenas executa o vocabulário; ele o desconstrói. A fluidez de seus movimentos sugere uma compreensão profunda da física aplicada.</p>
 <p><strong>A Ótica da Dança como Filosofia de Gestão:</strong> Para Laureano, a dança é a manifestação máxima da disciplina e da visão estratégica. Ritmo e Timing, Espacialidade e Resiliência Corporal são pilares que refletem o rigor necessário para atingir o topo.</p>
-<p><strong>Impacto Cultural:</strong> Ao ensinar ou dirigir, ele impõe um padrão de "CEO do Movimento" — onde a clareza de visão e a execução impecável são inegociáveis. Ele transcende a categoria de "intérprete" para se tornar um arquiteto do movimento.</p>
 </div>
 </div>
 </div>
@@ -175,6 +198,16 @@ footer{background:var(--s1);padding:60px 0;border-top:1px solid var(--s2)}
 <div class="scarcity-banner">
 <h4>O MOMENTO EXATO PARA COMEÇAR</h4>
 <p>Hoje é quarta-feira, 11 de Março. Chame agora no WhatsApp, garanta sua condição especial e faça sua primeira aula <strong>amanhã (quinta-feira)</strong>!</p>
+<div class="urgency-timer">
+<div class="urgency-text">
+<span class="dot" style="background:var(--b);animation:p2 1.5s infinite"></span> APENAS <strong>3 VAGAS RESTANTES</strong>
+</div>
+<div class="countdown">
+<div class="cd-item"><span id="cd-h">02</span><span>Horas</span></div>
+<div class="cd-item"><span id="cd-m">45</span><span>Min</span></div>
+<div class="cd-item"><span id="cd-s">30</span><span>Seg</span></div>
+</div>
+</div>
 </div>
 
 <p class="tc" style="color:var(--p);font-size:1.1rem;margin-bottom:32px;max-width:800px;margin-left:auto;margin-right:auto;font-weight:600;">* Os valores de R$ 130 (1x na semana) e R$ 160 (2x na semana) são exclusivos para pagamento on-line.</p>
@@ -201,7 +234,7 @@ footer{background:var(--s1);padding:60px 0;border-top:1px solid var(--s2)}
 <span style="font-size:0.9rem;color:#aaa;font-family:var(--fb);text-transform:none">1 ano de evolução por apenas ~R$ 20/aula. Parcelado no cartão.</span>
 </div>
 </div>
-<a href="https://wa.me/5524992211941?text=Ol%C3%A1!%20Tenho%20interesse%20nas%20aulas%20de%20Hip%20Hop%20Dance%20com%20Felipe%20Laureano.%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Anual." class="btn" target="_blank"><span class="btn-txt">GARANTIR VAGA</span></a>
+<a href="https://wa.me/5524992211941?text=Ol%C3%A1!%20Tenho%20interesse%20nas%20aulas%20de%20Hip%20Hop%20Dance%20com%20Felipe%20Laureano.%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Anual." class="btn btn-pulse" target="_blank"><span class="btn-txt">GARANTIR VAGA</span></a>
 </div>
 
 <div class="mc">
@@ -224,7 +257,7 @@ footer{background:var(--s1);padding:60px 0;border-top:1px solid var(--s2)}
 <span style="font-size:0.9rem;color:#aaa;font-family:var(--fb);text-transform:none">1 ano de evolução por apenas ~R$ 20/aula. Parcelado no cartão.</span>
 </div>
 </div>
-<a href="https://wa.me/5524992211941?text=Ol%C3%A1!%20Tenho%20interesse%20nas%20aulas%20de%20Charme%20com%20Felipe%20Laureano.%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Anual." class="btn" target="_blank"><span class="btn-txt">GARANTIR VAGA</span></a>
+<a href="https://wa.me/5524992211941?text=Ol%C3%A1!%20Tenho%20interesse%20nas%20aulas%20de%20Charme%20com%20Felipe%20Laureano.%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Anual." class="btn btn-pulse" target="_blank"><span class="btn-txt">GARANTIR VAGA</span></a>
 </div>
 
 <div class="mc">
@@ -247,7 +280,7 @@ footer{background:var(--s1);padding:60px 0;border-top:1px solid var(--s2)}
 <span style="font-size:0.9rem;color:#aaa;font-family:var(--fb);text-transform:none">1 ano de evolução por apenas ~R$ 20/aula. Parcelado no cartão.</span>
 </div>
 </div>
-<a href="https://wa.me/5524992211941?text=Ol%C3%A1!%20Tenho%20interesse%20nas%20aulas%20de%20Dan%C3%A7a%20Afro%20com%20Felipe%20Laureano.%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Anual." class="btn" target="_blank"><span class="btn-txt">GARANTIR VAGA</span></a>
+<a href="https://wa.me/5524992211941?text=Ol%C3%A1!%20Tenho%20interesse%20nas%20aulas%20de%20Dan%C3%A7a%20Afro%20com%20Felipe%20Laureano.%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Anual." class="btn btn-pulse" target="_blank"><span class="btn-txt">GARANTIR VAGA</span></a>
 </div>
 
 <div class="mc">
@@ -270,7 +303,7 @@ footer{background:var(--s1);padding:60px 0;border-top:1px solid var(--s2)}
 <span style="font-size:0.9rem;color:#aaa;font-family:var(--fb);text-transform:none">1 ano de evolução por apenas ~R$ 20/aula. Parcelado no cartão.</span>
 </div>
 </div>
-<a href="https://wa.me/5524992211941?text=Ol%C3%A1!%20Tenho%20interesse%20nas%20aulas%20de%20Dan%C3%A7a%20Contempor%C3%A2nea%20com%20Felipe%20Laureano.%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Anual." class="btn" target="_blank"><span class="btn-txt">GARANTIR VAGA</span></a>
+<a href="https://wa.me/5524992211941?text=Ol%C3%A1!%20Tenho%20interesse%20nas%20aulas%20de%20Dan%C3%A7a%20Contempor%C3%A2nea%20com%20Felipe%20Laureano.%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Anual." class="btn btn-pulse" target="_blank"><span class="btn-txt">GARANTIR VAGA</span></a>
 </div>
 
 </div>
@@ -291,6 +324,48 @@ footer{background:var(--s1);padding:60px 0;border-top:1px solid var(--s2)}
 <img src="https://i.postimg.cc/bwMHycQ5/Audição_felipe_Laure_12.jpg" alt="Dança Urbana">
 </div>
 </div>
+</div>
+</section>
+
+<section class="faq-section rev">
+<div class="container faq-container">
+<h2 class="st tc" style="margin-bottom:60px">DÚVIDAS <br><span>FREQUENTES</span></h2>
+
+<div class="faq-item">
+<details>
+<summary>Preciso ter experiência prévia em dança?</summary>
+<p>Não! Nossas turmas são desenhadas para acolher desde iniciantes até bailarinos avançados. A metodologia do Felipe Laureano foca no desenvolvimento individual e na construção de uma base sólida para todos os níveis.</p>
+</details>
+</div>
+
+<div class="faq-item">
+<details>
+<summary>Como funciona o pagamento on-line?</summary>
+<p>O pagamento on-line garante o valor promocional (R$ 130 para 1x/semana ou R$ 160 para 2x/semana). Ao clicar em "Garantir Vaga", você falará com nossa equipe no WhatsApp e receberá um link seguro para finalizar a matrícula via cartão ou PIX.</p>
+</details>
+</div>
+
+<div class="faq-item">
+<details>
+<summary>Onde acontecem as aulas presenciais?</summary>
+<p>As aulas acontecem presencialmente em nosso estúdio localizado em Petrópolis. O endereço completo, mapa e todas as orientações de chegada serão enviados imediatamente após a confirmação da sua matrícula.</p>
+</details>
+</div>
+
+<div class="faq-item">
+<details>
+<summary>Posso fazer uma aula experimental?</summary>
+<p>Devido à alta demanda, ao limite estrito de alunos por turma e ao foco na evolução contínua do grupo, não trabalhamos com aulas experimentais gratuitas no momento. Garantimos a qualidade e a entrega técnica desde o primeiro minuto de aula.</p>
+</details>
+</div>
+
+<div class="faq-item">
+<details>
+<summary>Como funciona o Plano Anual?</summary>
+<p>O Plano Anual é a nossa melhor oferta e a mais escolhida pelos alunos focados em evolução real. Você parcela em 10x de R$ 200 no cartão de crédito e tem acesso a 1 ano completo de aulas (2x na semana). Isso reduz drasticamente o valor pago por cada aula.</p>
+</details>
+</div>
+
 </div>
 </section>
 
@@ -347,6 +422,32 @@ const init = () => {
         e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('act');obs.unobserve(en.target);}});
     },{threshold:.15});
     document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+
+    // Countdown Timer
+    let timeInSeconds = 2 * 3600 + 45 * 60 + 30; // 2h 45m 30s
+    let displayH = document.querySelector('#cd-h');
+    let displayM = document.querySelector('#cd-m');
+    let displayS = document.querySelector('#cd-s');
+    
+    if(displayH && displayM && displayS) {
+        setInterval(function () {
+            let hours = parseInt(timeInSeconds / 3600, 10);
+            let minutes = parseInt((timeInSeconds % 3600) / 60, 10);
+            let seconds = parseInt(timeInSeconds % 60, 10);
+
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            displayH.textContent = hours;
+            displayM.textContent = minutes;
+            displayS.textContent = seconds;
+
+            if (--timeInSeconds < 0) {
+                timeInSeconds = 2 * 3600 + 45 * 60 + 30;
+            }
+        }, 1000);
+    }
 };
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
