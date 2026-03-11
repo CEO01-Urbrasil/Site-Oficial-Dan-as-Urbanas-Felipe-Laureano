@@ -21,9 +21,11 @@ import {
   ArrowLeft,
   Quote
 } from 'lucide-react';
+import LeadQuiz from '../components/LeadQuiz';
 
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [showQuiz, setShowQuiz] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ h: 2, m: 45, s: 30 });
 
   useEffect(() => {
@@ -502,28 +504,28 @@ export default function Home() {
                 title: 'Workshop de Breaking',
                 date: '25 de Março',
                 location: 'Sede URBrasil, Petrópolis',
-                link: 'https://wa.me/552422466753?text=Quero%20saber%20mais%20sobre%20o%20Workshop%20de%20Breaking'
+                link: '#'
               },
               {
                 title: 'Aulão de Hip Hop',
                 date: '10 de Abril',
                 location: 'Praça da Liberdade, Petrópolis',
-                link: 'https://wa.me/552422466753?text=Quero%20saber%20mais%20sobre%20o%20Aulão%20de%20Hip%20Hop'
+                link: '#'
               },
               {
                 title: 'URBrasil Battle',
                 date: '05 de Maio',
                 location: 'Centro Cultural, Petrópolis',
-                link: 'https://wa.me/552422466753?text=Quero%20saber%20mais%20sobre%20a%20URBrasil%20Battle'
+                link: '#'
               }
             ].map((evento, i) => (
               <div key={i} className="bg-[#111] p-8 rounded-3xl border border-white/5 hover:border-[#F5C400] transition-all group">
                 <div className="text-[#F5C400] font-bold uppercase tracking-widest text-xs mb-2">{evento.date}</div>
                 <h3 className="font-['Anton'] text-2xl uppercase tracking-wider mb-2">{evento.title}</h3>
                 <p className="text-gray-500 text-sm mb-6">{evento.location}</p>
-                <a href={evento.link} target="_blank" rel="noreferrer" className="inline-block border border-white/20 px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-[#F5C400] hover:text-black transition-all">
+                <button onClick={() => setShowQuiz(true)} className="inline-block border border-white/20 px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-[#F5C400] hover:text-black transition-all">
                   Saiba Mais
-                </a>
+                </button>
               </div>
             ))}
           </div>
@@ -566,9 +568,9 @@ export default function Home() {
                   <span className="text-2xl font-bold text-[#F5C400]">R$ 1.092,00</span>
                 </div>
               </div>
-              <a href="https://wa.me/552422466753?text=Quero%20me%20inscrever%20no%20Plano%201x%20por%20semana" className="mt-10 w-full border border-white/20 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center">
+              <button onClick={() => setShowQuiz(true)} className="mt-10 w-full border border-white/20 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center">
                 Invista em você
-              </a>
+              </button>
             </div>
 
             {/* 2x na Semana - DESTACADO */}
@@ -598,9 +600,9 @@ export default function Home() {
                   <span className="text-2xl font-bold text-[#F5C400]">R$ 1.344,00</span>
                 </div>
               </div>
-              <a href="https://wa.me/552422466753?text=Quero%20me%20inscrever%20no%20Plano%202x%20por%20semana" className="mt-10 w-full bg-[#F5C400] text-black py-5 rounded-xl font-['Anton'] text-xl uppercase tracking-widest hover:scale-105 transition-transform flex items-center justify-center">
+              <button onClick={() => setShowQuiz(true)} className="mt-10 w-full bg-[#F5C400] text-black py-5 rounded-xl font-['Anton'] text-xl uppercase tracking-widest hover:scale-105 transition-transform flex items-center justify-center">
                 Invista em você
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -613,9 +615,9 @@ export default function Home() {
           <p className="text-2xl md:text-3xl font-bold uppercase tracking-widest mb-12 max-w-3xl mx-auto">
             Faça parte da companhia oficial URBrasil e represente o movimento em competições e palcos nacionais.
           </p>
-          <a href="https://wa.me/552422466753?text=Quero%20me%20inscrever%20na%20audição!" className="inline-flex items-center gap-4 bg-black text-[#F5C400] font-['Anton'] text-3xl px-12 py-6 rounded-2xl hover:scale-105 transition-transform">
+          <button onClick={() => setShowQuiz(true)} className="inline-flex items-center gap-4 bg-black text-[#F5C400] font-['Anton'] text-3xl px-12 py-6 rounded-2xl hover:scale-105 transition-transform">
             QUERO ME INSCREVER <ArrowRight size={32} />
-          </a>
+          </button>
         </div>
       </section>
 
@@ -713,11 +715,11 @@ export default function Home() {
               <div className="font-['Anton'] text-xl uppercase tracking-wider">Facebook</div>
               <div className="text-xs text-gray-600 uppercase tracking-widest mt-2">URBrasil Oficial</div>
             </a>
-            <a href="https://wa.me/552422466753?text=Olá,%20gostaria%20de%20falar%20com%20a%20equipe%20URBrasil!" target="_blank" rel="noreferrer" className="group p-10 bg-[#111] rounded-3xl border border-white/5 hover:border-[#F5C400]/50 transition-all">
+            <button onClick={() => setShowQuiz(true)} className="group p-10 bg-[#111] rounded-3xl border border-white/5 hover:border-[#F5C400]/50 transition-all">
               <MessageCircle size={48} className="mx-auto mb-6 text-gray-500 group-hover:text-[#F5C400] transition-colors" />
               <div className="font-['Anton'] text-xl uppercase tracking-wider">WhatsApp</div>
               <div className="text-xs text-gray-600 uppercase tracking-widest mt-2">(24) 2246-6753</div>
-            </a>
+            </button>
           </div>
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#F5C400]/5 rounded-full blur-[120px] -z-0"></div>
@@ -737,7 +739,7 @@ export default function Home() {
               <a href="https://youtube.com/urbanamentebr" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><Youtube size={24} /></a>
               <a href="https://facebook.com/urbrasil" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><Facebook size={24} /></a>
               <a href="https://twitter.com/urbrasil" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><Twitter size={24} /></a>
-              <a href="https://wa.me/552422466753?text=Olá,%20gostaria%20de%20mais%20informações!" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><MessageCircle size={24} /></a>
+              <button onClick={() => setShowQuiz(true)} className="text-gray-400 hover:text-[#F5C400] transition-colors"><MessageCircle size={24} /></button>
             </div>
           </div>
           <div>
@@ -760,6 +762,7 @@ export default function Home() {
           © 2026 Felipe Laureano. Todos os direitos reservados.
         </div>
       </footer>
+      {showQuiz && <LeadQuiz onClose={() => setShowQuiz(false)} />}
     </div>
   );
 }
