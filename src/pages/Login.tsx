@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { loginWithGoogle, loginWithEmail, registerWithEmail } from '../firebase';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, LogIn, UserPlus, ArrowLeft } from 'lucide-react';
 
 export default function Login() {
@@ -35,7 +35,7 @@ export default function Login() {
       setError('');
       setLoading(true);
       await loginWithGoogle();
-      navigate('/');
+      navigate('/dashboard');
     } catch (error: any) {
       setError(getFriendlyErrorMessage(error.code));
     } finally {
@@ -53,7 +53,7 @@ export default function Login() {
       } else {
         await loginWithEmail(email, password);
       }
-      navigate('/');
+      navigate('/dashboard');
     } catch (error: any) {
       setError(getFriendlyErrorMessage(error.code));
     } finally {
@@ -74,13 +74,13 @@ export default function Login() {
       </div>
       
       {/* Back Button */}
-      <a 
-        href="https://urbrasil.com" 
+      <Link 
+        to="/" 
         className="absolute top-6 left-6 md:top-10 md:left-10 z-20 flex items-center gap-2 text-zinc-400 hover:text-white transition-colors"
       >
         <ArrowLeft size={20} />
         <span className="font-medium uppercase tracking-wider text-sm">Voltar ao Site</span>
-      </a>
+      </Link>
 
       {/* Card */}
       <div className="z-10 bg-zinc-900/60 backdrop-blur-2xl p-8 sm:p-10 rounded-3xl border border-white/10 max-w-md w-full mx-4 shadow-2xl">

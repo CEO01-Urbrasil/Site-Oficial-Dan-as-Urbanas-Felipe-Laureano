@@ -1,25 +1,38 @@
-# O Legado do Movimento - Felipe Laureano
+# URBrasil | Felipe Laureano - O Legado do Movimento
 
-Plataforma e comunidade de alta conversão para Felipe Laureano, CEO do Movimento, ex-presidente do conselho de cultura de Petrópolis, CEO SMS @urbrasil e diretor do filme Sufoco.
+Plataforma oficial de alta conversão para Felipe Laureano, referência em danças urbanas, CEO do Movimento e diretor da URBrasil.
 
-O projeto foca em captar alunos para as modalidades de **Hip Hop Dance, House Dance, Dança Infantil, Street Dance e Afro House**, com forte otimização (SEO) para o **Centro de Petrópolis, Rio de Janeiro**.
+O projeto foca em captar alunos para as modalidades de **Hip Hop Dance, Charme, Dança Afro e Contemporâneo**, com forte otimização (SEO) para **Petrópolis, Rio de Janeiro**.
 
-## Estrutura e Gatilhos Mentais
+## 🚀 Funcionalidades
 
-- **Autoridade Máxima:** Inclusão de credenciais de peso como Bailarino da TV Globo, The Voice Brasil, Coordenador Original Skillz Brasil e atuação global (Vietnã, Colômbia, Argentina, Londrina, Estônia com Vahur Vako).
-- **Escassez e Urgência (Funil Perpétuo):** O carrinho (matrículas) fica aberto perpetuamente, mas há um gatilho de urgência: matrículas feitas *presencialmente no Centro de Petrópolis* até o dia 20 de Março garantem isenção de taxa e condição exclusiva.
-- **Comunidade Exclusiva (Netflix Style):** Interface imersiva estilo streaming, aumentando a percepção de alto valor (High Ticket) do conteúdo.
-- **Prova Social:** Feed da comunidade integrado onde alunos interagem, gerando engajamento e validação social em tempo real.
-- **SEO Localizado:** Copy reestruturada com palavras-chave de alto engajamento ("Aulas de dança no Centro de Petrópolis", "Estúdio de dança RJ", "Aprender Hip Hop em Petrópolis", "Dança Infantil Petrópolis") para dominar as buscas na região serrana do Rio de Janeiro.
-- **Integração Headless CMS:** Blog e módulos de aulas dinâmicos integrados ao Hygraph via GraphQL (CDN de alta performance).
+- **Landing Page de Alta Conversão:** Design brutalista urbano com foco em autoridade e conversão.
+- **Área do Aluno (Dashboard):** Interface imersiva para gestão de aulas e progresso.
+- **Loja Oficial (Store):** E-commerce integrado para produtos exclusivos URBrasil.
+- **Blog da Comunidade:** Conteúdo dinâmico sobre cultura urbana e movimento.
+- **SEO Avançado:** Otimização completa com meta tags, OpenGraph e Twitter cards para máxima visibilidade.
+- **Design Responsivo:** Experiência otimizada para todos os dispositivos.
 
-## Prompts de Geração (Baseados na Autoridade)
+## 🛠️ Tecnologias
 
-*   **Prompt de Imagem (Cinematográfico):**
-    > "Full-body shot of a dancer inspired by Felipe Laureano, performing a high-dynamic urban contemporary move. The lighting is dramatic, chiaroscuro style, highlighting muscle definition and fluid motion. The background is a minimalist industrial loft. Cinematic 8k, sharp focus on the expression of intense focus and strategic command."
+- **React + TypeScript:** Base sólida e tipada para o frontend.
+- **Tailwind CSS:** Estilização rápida e consistente com utilitários.
+- **Firebase:** Autenticação e banco de dados em tempo real (Firestore).
+- **Lucide React:** Ícones modernos e leves.
+- **React Router:** Navegação fluida entre as páginas.
 
-*   **Prompt de Escrita (Conceitual):**
-    > "Escreva um manifesto sobre a 'Gestão do Movimento', utilizando a carreira de Felipe Laureano como base. O texto deve conectar a disciplina da dança com as competências de um CEO 01, focando em timing, ocupação de espaço e autoridade técnica."
+## 📈 Estratégia de SEO
 
-*   **Prompt de Arte Abstrata:**
-    > "Digital art piece representing 'The Physics of Laureano'. Abstract lines showing the trajectory of a complex dance move, blending sharp geometric angles with fluid, organic curves. Color palette: Deep charcoal, gold accents, and electric blue to represent energy and authority."
+- **Meta Tags Dinâmicas:** Títulos e descrições otimizados para buscadores.
+- **OpenGraph & Twitter Cards:** Compartilhamento social otimizado com imagens e descrições atraentes.
+- **Palavras-chave Estratégicas:** Foco em "Dança Petrópolis", "Felipe Laureano", "Hip Hop RJ" e "Cultura Urbana".
+- **Performance:** Carregamento rápido e estrutura semântica.
+
+## 🎨 Identidade Visual
+
+- **Paleta:** Preto (#0A0A0A), Amarelo (#F5C400) e tons de cinza.
+- **Tipografia:** Anton (Display), Barlow (Body) e Bebas Neue (Accents).
+- **Estilo:** Brutalismo Urbano, minimalista e impactante.
+
+---
+© 2026 Felipe Laureano. Todos os direitos reservados.

@@ -1,8 +1,9 @@
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from './firebase';
 import Layout from './components/Layout';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Store from './pages/Store';
@@ -29,14 +30,20 @@ export default function App() {
   }
 
   return (
-    <BrowserRouter basename="/app">
+    <BrowserRouter>
       <Routes>
-        <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
-        <Route path="/" element={user ? <Layout user={user} /> : <Navigate to="/login" />}>
-          <Route index element={<Dashboard user={user} />} />
-          <Route path="store" element={<Store />} />
-          <Route path="blog" element={<Blog />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
+        
+        {/* Authenticated Routes */}
+        <Route element={user ? <Layout user={user} /> : <Navigate to="/login" />}>
+          <Route path="/dashboard" element={<Dashboard user={user} />} />
+          <Route path="/store" element={<Store />} />
+          <Route path="/blog" element={<Blog />} />
         </Route>
+
+        {/* Fallback for old /app links */}
+        <Route path="/app/*" element={<Navigate to="/dashboard" />} />
       </Routes>
     </BrowserRouter>
   );

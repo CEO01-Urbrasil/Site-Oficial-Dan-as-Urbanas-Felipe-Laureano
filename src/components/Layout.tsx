@@ -7,7 +7,7 @@ export default function Layout({ user }: { user: User }) {
   const location = useLocation();
 
   const navItems = [
-    { path: '/', icon: Home, label: 'Início' },
+    { path: '/dashboard', icon: Home, label: 'Início' },
     { path: '/blog', icon: FileText, label: 'Blog' },
     { path: '/store', icon: ShoppingBag, label: 'Loja' },
   ];
