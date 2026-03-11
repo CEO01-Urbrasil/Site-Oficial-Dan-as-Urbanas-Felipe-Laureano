@@ -431,6 +431,62 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+      {/* Depoimentos */}
+      <section className="rev py-32 bg-[#111] px-6 relative overflow-hidden">
+        <div className="container max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="st font-['Anton'] text-6xl md:text-8xl uppercase mb-4">O QUE DIZEM <span className="text-[#F5C400]">NOSSOS ALUNOS</span></h2>
+            <p className="text-xl text-gray-500 max-w-2xl mx-auto">Histórias reais de quem vive a cultura urbana todos os dias.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Ana Silva",
+                role: "Aluna de Hip Hop",
+                text: "A URBrasil mudou minha forma de ver a dança. O Felipe é um mestre incrível que nos desafia a cada aula a encontrar nossa própria identidade.",
+                img: "https://picsum.photos/seed/ana/200/200"
+              },
+              {
+                name: "Lucas Santos",
+                role: "Aluno de House",
+                text: "Ambiente acolhedor e técnica de alto nível. Comecei como iniciante e hoje me sinto confiante para improvisar em qualquer pista.",
+                img: "https://picsum.photos/seed/lucas/200/200"
+              },
+              {
+                name: "Mariana Costa",
+                role: "Mãe de Aluna",
+                text: "Minha filha ama as aulas infantis. O desenvolvimento da coordenação e da confiança dela é nítido. Uma escola que realmente se importa.",
+                img: "https://picsum.photos/seed/mari/200/200"
+              }
+            ].map((testimonial, i) => (
+              <div key={i} className="bg-[#1A1A1A] p-10 rounded-3xl border border-white/5 relative group hover:border-[#F5C400]/50 transition-all">
+                <Quote className="absolute top-8 right-8 text-[#F5C400]/20 group-hover:text-[#F5C400]/40 transition-colors" size={48} />
+                
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#F5C400]">
+                    <img 
+                      src={testimonial.img} 
+                      alt={testimonial.name} 
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="font-['Anton'] text-xl uppercase tracking-wider">{testimonial.name}</h4>
+                    <p className="text-[#F5C400] text-xs font-bold uppercase tracking-widest">{testimonial.role}</p>
+                  </div>
+                </div>
+
+                <p className="text-gray-400 italic leading-relaxed font-medium">
+                  "{testimonial.text}"
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Próximos Eventos */}
       <section id="eventos" className="rev py-32 px-6 bg-[#0A0A0A]">
@@ -446,19 +502,19 @@ export default function Home() {
                 title: 'Workshop de Breaking',
                 date: '25 de Março',
                 location: 'Sede URBrasil, Petrópolis',
-                link: 'https://wa.me/5524992645678?text=Quero%20saber%20mais%20sobre%20o%20Workshop%20de%20Breaking'
+                link: 'https://wa.me/552422466753?text=Quero%20saber%20mais%20sobre%20o%20Workshop%20de%20Breaking'
               },
               {
                 title: 'Aulão de Hip Hop',
                 date: '10 de Abril',
                 location: 'Praça da Liberdade, Petrópolis',
-                link: 'https://wa.me/5524992645678?text=Quero%20saber%20mais%20sobre%20o%20Aulão%20de%20Hip%20Hop'
+                link: 'https://wa.me/552422466753?text=Quero%20saber%20mais%20sobre%20o%20Aulão%20de%20Hip%20Hop'
               },
               {
                 title: 'URBrasil Battle',
                 date: '05 de Maio',
                 location: 'Centro Cultural, Petrópolis',
-                link: 'https://wa.me/5524992645678?text=Quero%20saber%20mais%20sobre%20a%20URBrasil%20Battle'
+                link: 'https://wa.me/552422466753?text=Quero%20saber%20mais%20sobre%20a%20URBrasil%20Battle'
               }
             ].map((evento, i) => (
               <div key={i} className="bg-[#111] p-8 rounded-3xl border border-white/5 hover:border-[#F5C400] transition-all group">
@@ -510,7 +566,7 @@ export default function Home() {
                   <span className="text-2xl font-bold text-[#F5C400]">R$ 1.092,00</span>
                 </div>
               </div>
-              <a href="https://wa.me/5524992645678?text=Quero%20me%20inscrever%20no%20Plano%201x%20por%20semana" className="mt-10 w-full border border-white/20 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center">
+              <a href="https://wa.me/552422466753?text=Quero%20me%20inscrever%20no%20Plano%201x%20por%20semana" className="mt-10 w-full border border-white/20 py-4 rounded-xl font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center">
                 Invista em você
               </a>
             </div>
@@ -542,7 +598,7 @@ export default function Home() {
                   <span className="text-2xl font-bold text-[#F5C400]">R$ 1.344,00</span>
                 </div>
               </div>
-              <a href="https://wa.me/5524992645678?text=Quero%20me%20inscrever%20no%20Plano%202x%20por%20semana" className="mt-10 w-full bg-[#F5C400] text-black py-5 rounded-xl font-['Anton'] text-xl uppercase tracking-widest hover:scale-105 transition-transform flex items-center justify-center">
+              <a href="https://wa.me/552422466753?text=Quero%20me%20inscrever%20no%20Plano%202x%20por%20semana" className="mt-10 w-full bg-[#F5C400] text-black py-5 rounded-xl font-['Anton'] text-xl uppercase tracking-widest hover:scale-105 transition-transform flex items-center justify-center">
                 Invista em você
               </a>
             </div>
@@ -557,7 +613,7 @@ export default function Home() {
           <p className="text-2xl md:text-3xl font-bold uppercase tracking-widest mb-12 max-w-3xl mx-auto">
             Faça parte da companhia oficial URBrasil e represente o movimento em competições e palcos nacionais.
           </p>
-          <a href="https://wa.me/5524992645678" className="inline-flex items-center gap-4 bg-black text-[#F5C400] font-['Anton'] text-3xl px-12 py-6 rounded-2xl hover:scale-105 transition-transform">
+          <a href="https://wa.me/552422466753?text=Quero%20me%20inscrever%20na%20audição!" className="inline-flex items-center gap-4 bg-black text-[#F5C400] font-['Anton'] text-3xl px-12 py-6 rounded-2xl hover:scale-105 transition-transform">
             QUERO ME INSCREVER <ArrowRight size={32} />
           </a>
         </div>
@@ -637,6 +693,11 @@ export default function Home() {
           </div>
           <h2 className="st font-['Anton'] text-6xl md:text-8xl uppercase mb-12 leading-none">SIGA O <span className="text-[#F5C400]">MOVIMENTO</span></h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <a href="https://instagram.com/urbrasil" target="_blank" rel="noreferrer" className="group p-10 bg-[#111] rounded-3xl border border-white/5 hover:border-[#F5C400]/50 transition-all">
+              <Instagram size={48} className="mx-auto mb-6 text-gray-500 group-hover:text-[#F5C400] transition-colors" />
+              <div className="font-['Anton'] text-xl uppercase tracking-wider">Instagram</div>
+              <div className="text-xs text-gray-600 uppercase tracking-widest mt-2">@urbrasil</div>
+            </a>
             <a href="https://instagram.com/felipelaureano.o" target="_blank" rel="noreferrer" className="group p-10 bg-[#111] rounded-3xl border border-white/5 hover:border-[#F5C400]/50 transition-all">
               <Instagram size={48} className="mx-auto mb-6 text-gray-500 group-hover:text-[#F5C400] transition-colors" />
               <div className="font-['Anton'] text-xl uppercase tracking-wider">Instagram</div>
@@ -652,10 +713,10 @@ export default function Home() {
               <div className="font-['Anton'] text-xl uppercase tracking-wider">Facebook</div>
               <div className="text-xs text-gray-600 uppercase tracking-widest mt-2">URBrasil Oficial</div>
             </a>
-            <a href="https://wa.me/5524992645678" target="_blank" rel="noreferrer" className="group p-10 bg-[#111] rounded-3xl border border-white/5 hover:border-[#F5C400]/50 transition-all">
+            <a href="https://wa.me/552422466753?text=Olá,%20gostaria%20de%20falar%20com%20a%20equipe%20URBrasil!" target="_blank" rel="noreferrer" className="group p-10 bg-[#111] rounded-3xl border border-white/5 hover:border-[#F5C400]/50 transition-all">
               <MessageCircle size={48} className="mx-auto mb-6 text-gray-500 group-hover:text-[#F5C400] transition-colors" />
               <div className="font-['Anton'] text-xl uppercase tracking-wider">WhatsApp</div>
-              <div className="text-xs text-gray-600 uppercase tracking-widest mt-2">(24) 99264-5678</div>
+              <div className="text-xs text-gray-600 uppercase tracking-widest mt-2">(24) 2246-6753</div>
             </a>
           </div>
         </div>
@@ -671,11 +732,12 @@ export default function Home() {
               O maior movimento de danças urbanas da região serrana. Transformando vidas através do movimento e da cultura.
             </p>
             <div className="fsocial flex gap-6">
+              <a href="https://instagram.com/urbrasil" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><Instagram size={24} /></a>
               <a href="https://instagram.com/felipelaureano.o" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><Instagram size={24} /></a>
               <a href="https://youtube.com/urbanamentebr" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><Youtube size={24} /></a>
               <a href="https://facebook.com/urbrasil" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><Facebook size={24} /></a>
               <a href="https://twitter.com/urbrasil" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><Twitter size={24} /></a>
-              <a href="https://wa.me/5524992645678" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><MessageCircle size={24} /></a>
+              <a href="https://wa.me/552422466753?text=Olá,%20gostaria%20de%20mais%20informações!" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#F5C400] transition-colors"><MessageCircle size={24} /></a>
             </div>
           </div>
           <div>
@@ -691,7 +753,7 @@ export default function Home() {
             <h4 className="font-bold uppercase tracking-widest mb-6 text-sm">Contato</h4>
             <p className="text-gray-500 text-sm mb-4">Petrópolis, RJ - Brasil</p>
             <p className="text-gray-500 text-sm mb-4">contato@urbrasil.com.br</p>
-            <p className="text-[#F5C400] font-bold text-sm">(24) 99264-5678</p>
+            <p className="text-[#F5C400] font-bold text-sm">(24) 2246-6753</p>
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 text-center text-xs text-gray-600 uppercase tracking-widest">

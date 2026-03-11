@@ -10,6 +10,7 @@ import Store from './pages/Store';
 import Blog from './pages/Blog';
 import Quiz from './pages/Quiz';
 import FelipeLaureano from './pages/FelipeLaureano';
+import Members from './pages/Members';
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -36,6 +37,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/felipe-laureano" element={<FelipeLaureano />} />
+        <Route path="/membros" element={<Members />} />
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
         <Route path="/quiz" element={<Quiz />} />
         

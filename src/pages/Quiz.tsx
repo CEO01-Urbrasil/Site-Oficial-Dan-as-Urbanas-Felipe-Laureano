@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 const quizQuestions = [
   {
+    question: "Você é aluno atualmente ou já foi aluno?",
+    options: ["Sou aluno atualmente", "Já fui aluno"]
+  },
+  {
     question: "Qual é o seu maior desafio hoje na dança?",
     options: ["Falta de técnica", "Falta de confiança", "Não sei por onde começar", "Quero evoluir mais rápido"]
   },
@@ -17,6 +21,7 @@ const quizQuestions = [
 export default function Quiz() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
+  const [status, setStatus] = useState(''); // 'Sou aluno atualmente' or 'Já fui aluno'
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,6 +30,9 @@ export default function Quiz() {
   const navigate = useNavigate();
 
   const handleAnswer = (answer: string) => {
+    if (step === 0) {
+      setStatus(answer);
+    }
     setAnswers([...answers, answer]);
     setStep(step + 1);
   };
@@ -43,6 +51,7 @@ export default function Quiz() {
           uid: user.uid,
           name,
           email,
+          status,
           quizResult: answers.join(' | '),
           createdAt: serverTimestamp()
         });
@@ -54,14 +63,20 @@ export default function Quiz() {
   };
 
   if (finished) {
+    const isCurrent = status === 'Sou aluno atualmente';
     return (
       <div className="min-h-screen bg-[#0A0A0A] text-white p-8 flex flex-col items-center justify-center text-center">
-        <h2 className="text-4xl font-['Anton'] text-[#F5C400] mb-6">Obrigado por compartilhar!</h2>
-        <p className="text-lg mb-8">Temos o caminho ideal para você evoluir na dança.</p>
-        <div className="space-y-4">
-          <a href="#precos" className="block bg-[#F5C400] text-black px-8 py-4 rounded-xl font-bold uppercase">Agendar Aula Presencial</a>
-          <p className="text-gray-400">Aulas online agendadas e nosso App chegam em breve!</p>
-          <a href="/livros" className="block text-[#F5C400] underline">Conheça os livros de Felipe Laureano</a>
+        <h2 className="text-4xl font-['Anton'] text-[#F5C400] mb-6">
+          {isCurrent ? "Sua Jornada de Evolução" : "Bem-vindo de Volta!"}
+        </h2>
+        <p className="text-lg mb-8 max-w-md">
+          {isCurrent 
+            ? "Como você já faz parte da nossa comunidade, preparamos uma trilha focada em maestria e novos desafios para elevar seu nível técnico." 
+            : "Sentimos sua falta! Preparamos uma trilha especial para você se reconectar com a dança e descobrir as novas técnicas que desenvolvemos."}
+        </p>
+        <div className="space-y-4 w-full max-w-sm">
+          <a href="/dashboard" className="block bg-[#F5C400] text-black px-8 py-4 rounded-xl font-bold uppercase">Acessar Sua Trilha</a>
+          <a href="/" className="block text-gray-400 hover:text-white underline">Explorar todo o conteúdo</a>
         </div>
       </div>
     );

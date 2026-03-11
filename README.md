@@ -27,6 +27,10 @@ O projeto foca em captar alunos para as modalidades de **Hip Hop Dance, House Da
 - **OpenGraph & Twitter Cards:** Compartilhamento social otimizado com imagens e descrições atraentes.
 - **Palavras-chave Estratégicas:** Foco em "Dança Petrópolis", "Felipe Laureano", "Hip Hop RJ" e "Cultura Urbana".
 - **Performance:** Carregamento rápido e estrutura semântica.
+- **Schema Markup (JSON-LD):** Implementação de dados estruturados para:
+  - `LocalBusiness`: Informações da empresa (URBrasil) e link para o Perfil da Empresa no Google.
+  - `Person`: Perfil detalhado de Felipe Laureano.
+  - `Event`: Dados estruturados para eventos e workshops, facilitando a exibição em resultados de busca de eventos.
 
 ## 🎨 Identidade Visual
 

@@ -12,7 +12,7 @@ export default function Store() {
 
   const handleBuy = (productName: string) => {
     const message = encodeURIComponent(`Olá! Gostaria de comprar o produto: ${productName} da loja URBrasil.`);
-    window.open(`https://wa.me/5524992645678?text=${message}`, '_blank');
+    window.open(`https://wa.me/552422466753?text=${message}`, '_blank');
   };
 
   const products = [

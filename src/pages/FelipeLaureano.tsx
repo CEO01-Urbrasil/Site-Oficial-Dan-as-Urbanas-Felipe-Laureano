@@ -50,7 +50,7 @@ export default function FelipeLaureano() {
                 <a href="https://youtube.com/urbanamentebr" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#F5C400] hover:text-black transition-all">
                   <Youtube size={20} />
                 </a>
-                <a href="https://wa.me/5524992645678" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#F5C400] hover:text-black transition-all">
+                <a href="https://wa.me/552422466753?text=Olá,%20gostaria%20de%20falar%20com%20o%20Felipe%20Laureano!" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#F5C400] hover:text-black transition-all">
                   <MessageCircle size={20} />
                 </a>
               </div>
@@ -184,7 +184,7 @@ export default function FelipeLaureano() {
           <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
             Agende uma aula experimental com Felipe Laureano e descubra o poder do movimento.
           </p>
-          <a href="https://wa.me/5524992645678" target="_blank" rel="noreferrer" className="inline-flex items-center gap-4 bg-[#F5C400] text-black font-['Anton'] text-3xl px-12 py-6 rounded-2xl hover:scale-105 transition-transform">
+          <a href="https://wa.me/552422466753?text=Olá,%20gostaria%20de%20agendar%20uma%20aula%20experimental!" target="_blank" rel="noreferrer" className="inline-flex items-center gap-4 bg-[#F5C400] text-black font-['Anton'] text-3xl px-12 py-6 rounded-2xl hover:scale-105 transition-transform">
             AGENDAR AGORA <MessageCircle size={32} />
           </a>
         </div>
