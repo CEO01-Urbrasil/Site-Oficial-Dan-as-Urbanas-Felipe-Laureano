@@ -1,178 +1,127 @@
-import { useState, useEffect } from 'react';
-import { hygraphClient, GET_POSTS, Post } from '../services/hygraph';
-import { Calendar, Clock, ArrowRight, Search } from 'lucide-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Calendar, User, ArrowRight } from 'lucide-react';
+
+export const blogPosts = [
+  {
+    id: 'urbrasil-creator-labs-2026',
+    title: 'URBrasil: Lançamento do Laboratório de Criadores, Batalhas e Projetos de Dança',
+    excerpt: 'Temos a emoção de anunciar o lançamento do Laboratório de Criadores URBrasil, Batalhas e Mercado de Projetos, apresentado pela Fundação de Cultura de Petrópolis, que acontecerá de 10 a 16 de setembro de 2026.',
+    date: '12 Mar 2026',
+    author: 'Equipe URBrasil',
+    image: 'https://i.postimg.cc/VkTBfQjR/Audição_felipe_Laure_125.jpg',
+    content: `
+      <p>Temos a emoção de anunciar o lançamento do <strong>Laboratório de Criadores URBrasil, Batalhas e Mercado de Projetos</strong>, apresentado pela Fundação de Cultura de Petrópolis, que acontecerá de 10 a 16 de setembro de 2026.</p>
+      <p>Apoiando escritores, diretores, produtores, criadores de séries e coreógrafos emergentes de Petrópolis e de todo o Brasil, esses programas oferecem workshops práticos de desenvolvimento profissional, mentoria personalizada e orientação de projetos com profissionais da indústria aclamados internacionalmente. Você também pode se inscrever para esses programas através da nossa plataforma online.</p>
+      <p>Antes de enviar sua inscrição, certifique-se de se registrar para os <strong>Bootcamps URBrasil</strong> - o primeiro em 18 de março. O segundo em 22 de abril, em parceria com a Prefeitura de Petrópolis. Venha fazer perguntas, fortalecer sua inscrição e ganhar confiança para apresentar sua visão artística.</p>
+    `
+  },
+  {
+    id: 'felipe-laureano-estrategia-festivais',
+    title: 'Felipe Laureano: Como Transformar Duas Coreografias em Prêmios Nacionais',
+    excerpt: 'O diretor e coreógrafo explica como a forma, o caráter e a estratégia de festivais levaram a duas indicações de destaque para "O Vizinho Perfeito" e "A Rua é Nossa".',
+    date: '10 Mar 2026',
+    author: 'Redação URBrasil',
+    image: 'https://i.postimg.cc/CxtHhTGT/Audição_felipe_Laure_30.jpg',
+    content: `
+      <p>O diretor e coreógrafo Felipe Laureano explica como a forma, o caráter e a estratégia de festivais levaram a duas indicações de destaque para as peças "O Vizinho Perfeito" e "A Rua é Nossa" nos maiores festivais de dança urbana do país.</p>
+      <p>Nesta entrevista exclusiva, mergulhamos no processo criativo que transformou ideias simples em espetáculos premiados, destacando a importância da narrativa corporal e da conexão com o público.</p>
+    `
+  },
+  {
+    id: 'segredos-direcao-danca-urbana',
+    title: 'Os Segredos de Direção por Trás de "Hamnet" na Dança Urbana',
+    excerpt: 'Descubra o que a abordagem profundamente pessoal de Felipe Laureano para o espetáculo pode ensinar a todo diretor sobre história, personagem e como tirar os dançarinos de suas cabeças.',
+    date: '08 Mar 2026',
+    author: 'Equipe URBrasil',
+    image: 'https://i.postimg.cc/bwMHycQ5/Audição_felipe_Laure_12.jpg',
+    content: `
+      <p>Descubra o que a abordagem profundamente pessoal de Felipe Laureano para o espetáculo pode ensinar a todo diretor sobre história, personagem e como tirar os dançarinos de suas cabeças.</p>
+      <p>A transição do pensamento analítico para a pura expressão corporal é um dos maiores desafios na dança urbana. Neste artigo, exploramos as técnicas utilizadas nos ensaios da URBrasil em Petrópolis para alcançar a verdadeira essência do movimento.</p>
+    `
+  },
+  {
+    id: 'bootcamp-urbrasil-preparacao',
+    title: 'Bootcamp URBrasil: Prepare-se para o Mercado da Dança',
+    excerpt: 'Saiba tudo sobre o primeiro Bootcamp URBrasil no dia 18 de março. Uma oportunidade única para fortalecer sua inscrição e construir confiança.',
+    date: '05 Mar 2026',
+    author: 'Equipe URBrasil',
+    image: 'https://i.postimg.cc/VkTBfQjR/Audição_felipe_Laure_125.jpg',
+    content: `
+      <p>O mercado da dança está em constante evolução. O Bootcamp URBrasil, que acontece no dia 18 de março em Petrópolis, é a sua chance de se preparar para os desafios da indústria criativa.</p>
+      <p>Aprenda a fazer o pitch do seu projeto, entenda as dinâmicas de financiamento cultural e conecte-se com outros criadores da região serrana.</p>
+    `
+  },
+  {
+    id: 'mentoria-projetos-petropolis',
+    title: 'Mentoria de Projetos: Conectando Talentos em Petrópolis',
+    excerpt: 'Como o programa de mentoria da URBrasil está ajudando jovens talentos da região serrana a alcançarem palcos internacionais.',
+    date: '01 Mar 2026',
+    author: 'Redação URBrasil',
+    image: 'https://i.postimg.cc/CxtHhTGT/Audição_felipe_Laure_30.jpg',
+    content: `
+      <p>A mentoria é uma peça chave no desenvolvimento de qualquer artista. Na URBrasil, nosso programa de mentoria conecta jovens talentos de Petrópolis com profissionais aclamados internacionalmente.</p>
+      <p>Conheça as histórias de sucesso de alunos que transformaram suas paixões em carreiras sólidas através da orientação adequada e muito suor nos estúdios.</p>
+    `
+  },
+  {
+    id: 'danca-financiamento-internacional',
+    title: 'Financiamento Internacional para Projetos de Dança',
+    excerpt: 'Um guia completo sobre como o Mercado de Projetos da URBrasil facilita o acesso a fundos internacionais para criadores locais.',
+    date: '25 Fev 2026',
+    author: 'Equipe URBrasil',
+    image: 'https://i.postimg.cc/bwMHycQ5/Audição_felipe_Laure_12.jpg',
+    content: `
+      <p>Captar recursos é um dos maiores desafios para produtores culturais. O Mercado de Projetos da URBrasil, em parceria com instituições internacionais, abre portas para o financiamento de espetáculos e pesquisas em dança.</p>
+      <p>Neste guia, detalhamos os critérios de seleção e como você pode preparar seu portfólio para atrair investidores globais para a cena de Petrópolis.</p>
+    `
+  }
+];
 
 export default function Blog() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('Todos');
-  const [visibleCount, setVisibleCount] = useState(6);
-
-  const categories = ['Todos', ...Array.from(new Set(posts.map(p => p.categoria)))];
-
-  useEffect(() => {
-    setVisibleCount(6);
-  }, [searchQuery, selectedCategory]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const data: any = await hygraphClient.request(GET_POSTS);
-        setPosts(data.posts);
-      } catch (error) {
-        console.error("Error fetching blog posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPosts();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center text-[#F5C400]">
-        <div className="animate-pulse text-2xl font-['Anton'] tracking-widest">CARREGANDO BLOG...</div>
-      </div>
-    );
-  }
-
-  const filteredPosts = posts.filter(post => 
-    (selectedCategory === 'Todos' || post.categoria === selectedCategory) &&
-    (post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    (post.descricao && post.descricao.toLowerCase().includes(searchQuery.toLowerCase())))
-  );
-
-  const displayedPosts = filteredPosts.slice(0, visibleCount);
-
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white p-8 md:p-12 pb-32">
-      <div className="max-w-5xl mx-auto">
-        <header className="mb-12 border-b border-[#1A1A1A] pb-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <h1 className="font-['Anton'] text-5xl md:text-7xl text-[#F5C400] uppercase tracking-wider mb-4">
-                URBRASIL BLOG
-              </h1>
-              <p className="font-['Barlow_Condensed'] text-xl text-gray-400 uppercase tracking-widest">
-                Notícias, Artigos e Atualizações da Comunidade
-              </p>
-            </div>
-            
-            <div className="relative w-full md:w-72">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <Search className="text-gray-500" size={18} />
-              </div>
-              <input
-                type="text"
-                placeholder="Buscar artigos..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#111] border border-[#1A1A1A] text-white rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-[#F5C400] focus:ring-1 focus:ring-[#F5C400] transition-all font-['Barlow'] placeholder:text-gray-600"
-              />
-            </div>
-          </div>
-          
-          {/* Category Filter */}
-          <div className="mt-8 flex flex-wrap gap-2">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-bold uppercase tracking-widest transition-all ${
-                  selectedCategory === cat 
-                    ? 'bg-[#F5C400] text-black' 
-                    : 'bg-[#111] text-gray-400 hover:bg-[#1A1A1A] hover:text-white'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </header>
+    <div className="min-h-screen bg-[#0A0A0A] text-white p-8 pb-24 md:pb-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-12 border-b border-[#1A1A1A] pb-6">
+          <h1 className="font-['Anton'] text-4xl md:text-5xl text-[#F5C400] tracking-wider uppercase">Blog URBrasil</h1>
+          <p className="text-gray-400 font-['Barlow'] mt-2 text-lg">Notícias, artigos e novidades sobre o movimento em Petrópolis.</p>
+        </div>
 
-        {posts.length === 0 ? (
-          <div className="text-center py-20 bg-[#111] rounded-2xl border border-[#1A1A1A]">
-            <p className="text-gray-400 font-['Barlow'] text-lg">
-              Nenhum artigo publicado no momento.
-            </p>
-            <p className="text-sm text-gray-500 mt-2">
-              (Crie posts no painel do Hygraph para que eles apareçam aqui)
-            </p>
-          </div>
-        ) : filteredPosts.length === 0 ? (
-          <div className="text-center py-20 bg-[#111] rounded-2xl border border-[#1A1A1A]">
-            <p className="text-gray-400 font-['Barlow'] text-lg">
-              Nenhum artigo encontrado para "{searchQuery}".
-            </p>
-            <button 
-              onClick={() => setSearchQuery('')}
-              className="mt-4 text-[#F5C400] hover:underline font-['Barlow'] font-bold"
-            >
-              Limpar busca
-            </button>
-          </div>
-        ) : (
-          <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {displayedPosts.map((post) => (
-                <article 
-                  key={post.id} 
-                  className="bg-[#111] rounded-2xl border border-[#1A1A1A] overflow-hidden group hover:border-[#F5C400] transition-all duration-300 flex flex-col hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#F5C400]/10"
-                >
-                  <div className="aspect-video relative overflow-hidden bg-[#1A1A1A]">
-                    {post.file?.url ? (
-                      <img 
-                        src={post.file.url} 
-                        alt={post.title} 
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-[#333]">
-                        <span className="font-['Anton'] text-4xl opacity-20">URBRASIL</span>
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-80"></div>
-                  </div>
-                  
-                  <div className="p-6 flex-1 flex flex-col">
-                    <div className="flex items-center gap-4 text-xs text-[#F5C400] font-['Barlow'] font-bold uppercase tracking-wider mb-4">
-                      {post.date && (
-                        <span className="flex items-center gap-1">
-                          <Calendar size={14} />
-                          {new Date(post.date).toLocaleDateString('pt-BR')}
-                        </span>
-                      )}
-                    </div>
-                    
-                    <h2 className="font-['Anton'] text-2xl mb-3 text-white group-hover:text-[#F5C400] transition-colors line-clamp-2">
-                      {post.title}
-                    </h2>
-                    
-                    <p className="text-gray-400 font-['Barlow'] text-sm mb-6 line-clamp-3 flex-1">
-                      {post.descricao}
-                    </p>
-                    
-                    <button className="flex items-center gap-2 text-sm font-bold text-white group-hover:text-[#F5C400] transition-colors mt-auto w-fit">
-                      LER ARTIGO <ArrowRight size={16} />
-                    </button>
-                  </div>
-                </article>
-              ))}
-            </div>
-
-            {filteredPosts.length > visibleCount && (
-              <div className="mt-16 flex justify-center">
-                <button 
-                  onClick={() => setVisibleCount(prev => prev + 6)}
-                  className="bg-[#111] border border-[#1A1A1A] text-white px-10 py-4 rounded-full font-['Anton'] tracking-widest hover:bg-[#F5C400] hover:text-black hover:border-[#F5C400] transition-all flex items-center gap-4 group"
-                >
-                  CARREGAR MAIS <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
-                </button>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogPosts.map((post) => (
+            <article key={post.id} className="bg-[#111] border border-[#1A1A1A] rounded-2xl overflow-hidden group hover:border-[#F5C400] transition-colors flex flex-col">
+              <div className="relative aspect-video overflow-hidden">
+                <img 
+                  src={post.image} 
+                  alt={post.title} 
+                  loading="lazy"
+                  className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111] to-transparent opacity-80"></div>
               </div>
-            )}
-          </>
-        )}
+              
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center gap-4 text-xs text-gray-500 mb-4 font-bold uppercase tracking-widest">
+                  <span className="flex items-center gap-1"><Calendar size={14} /> {post.date}</span>
+                  <span className="flex items-center gap-1"><User size={14} /> {post.author}</span>
+                </div>
+                <h2 className="font-['Barlow_Condensed'] text-2xl font-bold mb-3 uppercase tracking-wide leading-tight group-hover:text-[#F5C400] transition-colors">
+                  {post.title}
+                </h2>
+                <p className="text-gray-400 text-sm mb-6 line-clamp-3">
+                  {post.excerpt}
+                </p>
+                
+                <Link 
+                  to={`/blog/${post.id}`}
+                  className="mt-auto inline-flex items-center gap-2 text-[#F5C400] font-bold uppercase tracking-widest text-sm hover:gap-3 transition-all"
+                >
+                  Ler Matéria Completa <ArrowRight size={16} />
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   );

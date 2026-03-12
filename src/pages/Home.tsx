@@ -143,6 +143,7 @@ export default function Home() {
             <a href="#sobre" className="text-sm font-bold uppercase tracking-widest hover:text-[#F5C400] transition-colors">Sobre</a>
             <a href="#modalidades" className="text-sm font-bold uppercase tracking-widest hover:text-[#F5C400] transition-colors">Aulas</a>
             <a href="#precos" className="text-sm font-bold uppercase tracking-widest hover:text-[#F5C400] transition-colors">Planos</a>
+            <Link to="/blog" className="text-sm font-bold uppercase tracking-widest hover:text-[#F5C400] transition-colors">Blog</Link>
             <Link to="/login" className="bg-[#F5C400] text-black px-6 py-2 rounded-full font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform">
               Entrar
             </Link>

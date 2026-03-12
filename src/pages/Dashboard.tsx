@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { User } from 'firebase/auth';
 import { collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
-import { Play, Info, Heart, MessageCircle, Send } from 'lucide-react';
+import { Play, Info, Heart, MessageCircle, Send, Link as LinkIcon, Instagram, Youtube, Music } from 'lucide-react';
 import { hygraphClient, GET_POSTS, Post } from '../services/hygraph';
 
 export default function Dashboard({ user }: { user: User }) {
@@ -138,6 +138,7 @@ export default function Dashboard({ user }: { user: User }) {
                     <img 
                       src={post.file?.url || 'https://i.postimg.cc/VkTBfQjR/Audição_felipe_Laure_125.jpg'} 
                       alt={`Capa da aula: ${post.title}`} 
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
                     />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -159,7 +160,7 @@ export default function Dashboard({ user }: { user: User }) {
               <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x">
                 {playlist.items.map((item) => (
                   <div key={item.id} className="min-w-[250px] md:min-w-[300px] aspect-video relative rounded-md overflow-hidden group cursor-pointer snap-start flex-shrink-0">
-                    <img src={item.img} alt={`Capa da aula: ${item.title}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                    <img src={item.img} alt={`Capa da aula: ${item.title}`} loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <Play fill="white" size={48} className="text-white drop-shadow-lg" />
                     </div>
@@ -177,6 +178,25 @@ export default function Dashboard({ user }: { user: User }) {
       {/* Right Sidebar (Instagram Feed + Spotify) */}
       <div className="w-full lg:w-[400px] bg-[#111] border-l border-[#1A1A1A] flex flex-col h-screen sticky top-0">
         
+        {/* Links Úteis (Linktree) */}
+        <div className="p-6 border-b border-[#1A1A1A]">
+          <h3 className="font-['Anton'] text-xl text-[#F5C400] mb-4 tracking-wider">LINKS ÚTEIS</h3>
+          <div className="grid grid-cols-2 gap-3">
+            <a href="https://linktr.ee/urbrasil" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-[#1A1A1A] p-3 rounded-lg hover:bg-[#F5C400] hover:text-black transition-colors text-sm font-bold">
+              <LinkIcon size={16} /> Linktree
+            </a>
+            <a href="https://wa.me/552422466753" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-[#1A1A1A] p-3 rounded-lg hover:bg-[#F5C400] hover:text-black transition-colors text-sm font-bold">
+              <MessageCircle size={16} /> WhatsApp
+            </a>
+            <a href="https://instagram.com/urbrasil" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-[#1A1A1A] p-3 rounded-lg hover:bg-[#F5C400] hover:text-black transition-colors text-sm font-bold">
+              <Instagram size={16} /> Instagram
+            </a>
+            <a href="https://youtube.com/urbanamentebr" target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-[#1A1A1A] p-3 rounded-lg hover:bg-[#F5C400] hover:text-black transition-colors text-sm font-bold">
+              <Youtube size={16} /> YouTube
+            </a>
+          </div>
+        </div>
+
         {/* Spotify Embed */}
         <div className="p-6 border-b border-[#1A1A1A]">
           <h3 className="font-['Anton'] text-xl text-[#F5C400] mb-4 tracking-wider">VIBE DA SEMANA</h3>

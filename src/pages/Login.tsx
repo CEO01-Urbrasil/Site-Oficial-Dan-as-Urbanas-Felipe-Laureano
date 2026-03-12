@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { loginWithGoogle, loginWithEmail, registerWithEmail } from '../firebase';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, LogIn, UserPlus, ArrowLeft } from 'lucide-react';
+import { Mail, Lock, LogIn, UserPlus, ArrowLeft, Link as LinkIcon, Instagram, Youtube, MessageCircle } from 'lucide-react';
+import { User } from 'firebase/auth';
 
-export default function Login() {
+export default function Login({ user }: { user: User | null }) {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'login' | 'register'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      if (user.metadata.creationTime === user.metadata.lastSignInTime) {
+        navigate('/quiz');
+      } else {
+        navigate('/dashboard');
+      }
+    }
+  }, [user, navigate]);
 
   const getFriendlyErrorMessage = (errorCode: string) => {
     switch (errorCode) {
@@ -34,17 +45,10 @@ export default function Login() {
     try {
       setError('');
       setLoading(true);
-      const user = await loginWithGoogle();
-      
-      // Check if it's a new user
-      if (user.metadata.creationTime === user.metadata.lastSignInTime) {
-        navigate('/quiz');
-      } else {
-        navigate('/dashboard');
-      }
+      await loginWithGoogle();
+      // The useEffect will handle the redirect once the user state updates
     } catch (error: any) {
       setError(getFriendlyErrorMessage(error.code));
-    } finally {
       setLoading(false);
     }
   };
@@ -56,14 +60,12 @@ export default function Login() {
       setLoading(true);
       if (activeTab === 'register') {
         await registerWithEmail(email, password);
-        navigate('/quiz');
       } else {
         await loginWithEmail(email, password);
-        navigate('/dashboard');
       }
+      // The useEffect will handle the redirect once the user state updates
     } catch (error: any) {
       setError(getFriendlyErrorMessage(error.code));
-    } finally {
       setLoading(false);
     }
   };
@@ -176,7 +178,7 @@ export default function Login() {
           onClick={handleGoogleLogin}
           type="button"
           disabled={loading}
-          className="w-full bg-white text-zinc-900 font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-3 hover:bg-zinc-100 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+          className="w-full bg-white text-zinc-900 font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-3 hover:bg-zinc-100 transition-all disabled:opacity-70 disabled:cursor-not-allowed mb-8"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24">
             <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -186,6 +188,25 @@ export default function Login() {
           </svg>
           Google
         </button>
+
+        {/* Links Úteis */}
+        <div className="border-t border-white/10 pt-6">
+          <p className="text-center text-zinc-500 text-xs font-bold uppercase tracking-wider mb-4">Nossas Redes</p>
+          <div className="flex justify-center gap-4">
+            <a href="https://linktr.ee/urbrasil" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-[#F5C400] transition-colors" title="Linktree">
+              <LinkIcon size={20} />
+            </a>
+            <a href="https://wa.me/552422466753" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-[#F5C400] transition-colors" title="WhatsApp">
+              <MessageCircle size={20} />
+            </a>
+            <a href="https://instagram.com/urbrasil" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-[#F5C400] transition-colors" title="Instagram">
+              <Instagram size={20} />
+            </a>
+            <a href="https://youtube.com/urbanamentebr" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-[#F5C400] transition-colors" title="YouTube">
+              <Youtube size={20} />
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Store from './pages/Store';
 import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import Quiz from './pages/Quiz';
 import FelipeLaureano from './pages/FelipeLaureano';
 import Members from './pages/Members';
@@ -38,7 +39,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/felipe-laureano" element={<FelipeLaureano />} />
         <Route path="/membros" element={<Members />} />
-        <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
+        <Route path="/login" element={<Login user={user} />} />
         <Route path="/quiz" element={<Quiz />} />
         
         {/* Authenticated Routes */}
@@ -46,6 +47,7 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard user={user} />} />
           <Route path="/store" element={<Store />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
         </Route>
 
         {/* Fallback for old /app links */}
