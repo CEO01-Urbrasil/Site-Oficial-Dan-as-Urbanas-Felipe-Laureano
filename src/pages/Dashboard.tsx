@@ -9,12 +9,15 @@ export default function Dashboard({ user }: { user: User }) {
   const [posts, setPosts] = useState<any[]>([]);
   const [newPost, setNewPost] = useState('');
   const [hygraphPosts, setHygraphPosts] = useState<Post[]>([]);
+  const [loadingPosts, setLoadingPosts] = useState(true);
+  const [loadingHygraph, setLoadingHygraph] = useState(true);
 
   useEffect(() => {
     // Fetch Firebase Posts (Community Feed)
     const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       setPosts(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+      setLoadingPosts(false);
     });
 
     // Fetch Hygraph Posts (Classes/Content)
@@ -24,6 +27,8 @@ export default function Dashboard({ user }: { user: User }) {
         setHygraphPosts(data.posts);
       } catch (error) {
         console.error("Error fetching from Hygraph:", error);
+      } finally {
+        setLoadingHygraph(false);
       }
     };
     fetchHygraphData();
@@ -129,7 +134,21 @@ export default function Dashboard({ user }: { user: User }) {
         <div className="p-8 space-y-12">
           
           {/* Hygraph Dynamic Content */}
-          {hygraphPosts.length > 0 && (
+          {loadingHygraph ? (
+            <div className="animate-pulse">
+              <div className="h-8 w-64 bg-[#1A1A1A] rounded mb-4"></div>
+              <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="min-w-[250px] md:min-w-[300px] aspect-video relative rounded-md overflow-hidden bg-[#1A1A1A] flex-shrink-0 border border-white/5">
+                    <div className="absolute bottom-0 left-0 w-full p-4">
+                      <div className="h-5 w-3/4 bg-[#333] rounded mb-2"></div>
+                      <div className="h-3 w-1/2 bg-[#333] rounded"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : hygraphPosts.length > 0 ? (
             <div>
               <h2 className="font-['Barlow_Condensed'] text-2xl font-bold mb-4 tracking-wider">AULAS RECENTES (HYGRAPH)</h2>
               <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x">
@@ -152,7 +171,7 @@ export default function Dashboard({ user }: { user: User }) {
                 ))}
               </div>
             </div>
-          )}
+          ) : null}
 
           {playlists.map((playlist, idx) => (
             <div key={idx}>
@@ -241,7 +260,30 @@ export default function Dashboard({ user }: { user: User }) {
 
           {/* Posts List */}
           <div className="space-y-4 flex-1 overflow-y-auto pr-2 scrollbar-hide">
-            {posts.length === 0 ? (
+            {loadingPosts ? (
+              <div className="space-y-4">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="bg-[#1A1A1A] rounded-xl p-4 animate-pulse border border-white/5">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-full bg-[#333]"></div>
+                      <div className="space-y-2 flex-1">
+                        <div className="h-3 w-32 bg-[#333] rounded"></div>
+                        <div className="h-2 w-20 bg-[#333] rounded"></div>
+                      </div>
+                    </div>
+                    <div className="space-y-2 mb-4">
+                      <div className="h-3 w-full bg-[#333] rounded"></div>
+                      <div className="h-3 w-5/6 bg-[#333] rounded"></div>
+                      <div className="h-3 w-4/6 bg-[#333] rounded"></div>
+                    </div>
+                    <div className="flex items-center gap-4 border-t border-[#333] pt-3">
+                      <div className="h-4 w-12 bg-[#333] rounded"></div>
+                      <div className="h-4 w-20 bg-[#333] rounded"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : posts.length === 0 ? (
               <p className="text-gray-500 text-center text-sm">Nenhum recado ainda. Seja o primeiro!</p>
             ) : (
               posts.map((post) => (
